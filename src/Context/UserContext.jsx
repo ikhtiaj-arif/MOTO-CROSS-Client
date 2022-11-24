@@ -15,7 +15,7 @@ const UserContext = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const updateUserName = (profile) => {
+    const updateUser = (profile) => {
         setLoading(true)
         return updateProfile(auth.currentUser, profile)
     }
@@ -26,6 +26,7 @@ const UserContext = ({children}) => {
     }
 
     const logOutUser = () =>{
+        setLoading(true)
         localStorage.removeItem('motocross-token')
         return signOut(auth)
     }
@@ -40,12 +41,15 @@ const UserContext = ({children}) => {
         }
     },[])
 
-
+console.log(user);
     const info={
         user,
+        setUser,
         loading,
+        setLoading,
         createUser,
         logInUser,
+        updateUser,
         logOutUser
 
     }
