@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
+import BookModal from "./BookModal";
 
 const BikeInfo = () => {
 
@@ -34,12 +35,13 @@ const BikeInfo = () => {
         }
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Book Now</button>
+          <label htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
+           
           </div>
-          
         </div>
-      
       </div>
+        <BookModal bikeInfo={bikeInfo}/>
+
     </div>
   );
 };

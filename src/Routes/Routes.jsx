@@ -1,11 +1,14 @@
 
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../Layouts/Dashboard";
 import Main from "../Layouts/Main";
 import BikeInfo from "../Pages/Bikes/BikeInfo";
 import BikesByTitle from "../Pages/Bikes/BikesByTitle";
 import Home from "../Pages/Home/Home";
+import MyBookings from "../Pages/Private/MyBookings";
 import Login from "../Pages/Shared/Login";
 import SignUp from "../Pages/Shared/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -33,12 +36,22 @@ const router = createBrowserRouter([
             },
             {
                 path: '/bike/:id',
-                element: <BikeInfo></BikeInfo>,
+                element: <PrivateRoute><BikeInfo/></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/bike/${params.id}`)
-            },
-
+            }
+        ]  
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard/></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard/myBookings',
+                element: <MyBookings/>
+            }
         ]
     }
+
 ])
 
 export default router
