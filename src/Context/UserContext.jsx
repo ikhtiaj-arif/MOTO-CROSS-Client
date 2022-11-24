@@ -26,7 +26,7 @@ const UserContext = ({children}) => {
     }
 
     const logOutUser = () =>{
-        
+        localStorage.removeItem('motocross-token')
         return signOut(auth)
     }
 
