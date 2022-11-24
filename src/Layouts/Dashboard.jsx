@@ -21,6 +21,9 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/myBookings">My Bookings</Link>
             </li>
+            <li>
+              <Link to="/dashboard/allUsers">All Users</Link>
+            </li>
 
             {/*conditional routes for seller */}
             {/*conditional routes for admin */}
