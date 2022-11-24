@@ -1,0 +1,72 @@
+[
+    {
+      "title": "TOURIST",
+      "Bike_Name": "Yemaha fsx",
+      "price": "$1,965.58",
+      "org_price": "$2,125.63",
+      "picture": "https://motorbikewriter.com/wp-content/uploads/2020/10/2020-BMW-R1250GS-Side-View-Studio-Shot.jpg",
+      "used": 40,
+      "seller_name": "Allison ",
+      "location": "OMATOM",
+      "email": "allisonwalter@omatom.com",
+      "phone": "+1 (930) 405-2504",
+      "address": "Puerto Rico",
+      "isVerified": "verified"
+    },
+    {
+      "title": "TOURIST",
+      "Bike_Name": "Yemaha fsx",
+      "price": "$1,763.16",
+      "org_price": "$2,722.62",
+      "picture": "https://www.bennetts.co.uk/-/media/bikesocial/2021-february-images/top-10-ten-touring-bikes-2021/top-10-ten-touring-bikes-2021_02.ashx?h=493&la=en&w=740&hash=9FA977EF262F33510C216BFE114AAE9C2BDAF04E",
+      "used": 38,
+      "seller_name": "Colette ",
+      "location": "EXOVENT",
+      "email": "colettewalter@exovent.com",
+      "phone": "+1 (976) 536-2843",
+      "address": "Hawaii",
+      "isVerified": "verified"
+    },
+    {
+      "title": "SCRAMBLER",
+      "Bike_Name": "Yemaha fsx",
+      "price": "$1,763.16",
+      "org_price": "$2,722.62",
+      "picture": "https://www.bennetts.co.uk/-/media/bikesocial/2021-february-images/top-10-ten-touring-bikes-2021/top-10-ten-touring-bikes-2021_02.ashx?h=493&la=en&w=740&hash=9FA977EF262F33510C216BFE114AAE9C2BDAF04E",
+      "used": 38,
+      "seller_name": "Colette ",
+      "location": "EXOVENT",
+      "email": "colettewalter@exovent.com",
+      "phone": "+1 (976) 536-2843",
+      "address": "Hawaii",
+      "isVerified": "verified"
+    },
+    {
+      "title": "CRUISER",
+      "Bike_Name": "Yemaha fsx",
+      "price": "$1,763.16",
+      "org_price": "$2,722.62",
+      "picture": "https://www.bennetts.co.uk/-/media/bikesocial/2021-february-images/top-10-ten-touring-bikes-2021/top-10-ten-touring-bikes-2021_02.ashx?h=493&la=en&w=740&hash=9FA977EF262F33510C216BFE114AAE9C2BDAF04E",
+      "used": 38,
+      "seller_name": "Colette ",
+      "location": "EXOVENT",
+      "email": "colettewalter@exovent.com",
+      "phone": "+1 (976) 536-2843",
+      "address": "Hawaii",
+      "isVerified": "verified"
+    },
+    {
+      "title": "SPORTS",
+      "Bike_Name": "Yemaha fsx",
+      "price": "$1,810.40",
+      "org_price": "$3,523.00",
+      "picture": "https://i0.wp.com/revelatoralf.com/wp-content/uploads/2021/12/Screenshot-2021-12-06-at-21.30.40.png?resize=748%2C561&ssl=1",
+      "used": 36,
+      "seller_name": "Leila ",
+      "location": "DELPHIDE",
+      "email": "leilawalter@delphide.com",
+      "phone": "+1 (992) 503-3706",
+      "address": "American Samoa",
+      "isVerified": "verified"
+    }
+  ]

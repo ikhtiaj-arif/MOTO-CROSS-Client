@@ -144,13 +144,14 @@ const SignUp = () => {
             </div>
           </div>
           <div>
-            <select className="select select-primary w-full max-w-xs">
+            <select 
+           className="select select-primary w-full max-w-xs">
               <option disabled selected>
                 Select Your Location
               </option>
-              <option>Dhaka</option>
-              <option>Rajshahi</option>
-              <option>Chittagong</option>
+              <option value='Dhaka'>Dhaka</option>
+              <option value='Rajshahi'>Rajshahi</option>
+              <option value='Chittagong'>Chittagong</option>
             </select>
           </div>
 

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CategoryCard from './CategoryCard';
 
 const Categories = () => {
+  const [categories, setCategories] = useState([])
+  useEffect(()=>{
+    fetch(`http://localhost:5000/categories`)
+    .then(res => res.json())
+    .then(data => setCategories(data))
+  },[])
+
     return (
         <div className="mx-auto mt-32">
       <div className="text-center">
@@ -12,10 +19,14 @@ const Categories = () => {
         </p>
       </div>
       <div className="mt-32 grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {}
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
+        {
+          categories.map(category => <CategoryCard
+          key={category._id}
+          category={category}
+          ></CategoryCard>)
+        }
+        
+        
       </div>
       <div className=" text-center mt-12">
         <button className="btn btn-outline btn-accent">More pagination</button>

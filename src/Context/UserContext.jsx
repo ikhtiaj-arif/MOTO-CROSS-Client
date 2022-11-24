@@ -41,7 +41,7 @@ const UserContext = ({children}) => {
         }
     },[])
 
-console.log(user);
+// console.log(user);
     const info={
         user,
         setUser,
