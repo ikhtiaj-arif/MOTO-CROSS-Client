@@ -1,6 +1,7 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
+import BikeInfo from "../Pages/Bikes/BikeInfo";
 import BikesByTitle from "../Pages/Bikes/BikesByTitle";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Shared/Login";
@@ -31,7 +32,9 @@ const router = createBrowserRouter([
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.title}`)
             },
             {
-                
+                path: '/bike/:id',
+                element: <BikeInfo></BikeInfo>,
+                loader: ({params}) => fetch(`http://localhost:5000/bike/${params.id}`)
             },
 
         ]
