@@ -5,8 +5,10 @@ import Main from "../Layouts/Main";
 import BikeInfo from "../Pages/Bikes/BikeInfo";
 import BikesByTitle from "../Pages/Bikes/BikesByTitle";
 import Home from "../Pages/Home/Home";
+import AllSeller from "../Pages/Private/AdminAccess/AllSeller";
 import AllUsers from "../Pages/Private/AdminAccess/AllUsers";
 import MyBookings from "../Pages/Private/MyBookings";
+import AddProducts from "../Pages/Private/Seller/AddProducts";
 import Login from "../Pages/Shared/Login";
 import SignUp from "../Pages/Shared/SignUp";
 import PrivateRoute from "./PrivateRoute";
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allUsers',
                 element: <AllUsers/>
+            },
+            {
+                path: '/dashboard/allSeller',
+                element: <AllSeller/>
+            },
+            {
+                path: '/dashboard/addProduct',
+                element: <AddProducts/>
             },
         ]
     }

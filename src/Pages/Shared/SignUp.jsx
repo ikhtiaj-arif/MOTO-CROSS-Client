@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../Api/Auth";
-import { Postimg } from "../../Api/Postimg";
+import { PostImage } from "../../Api/Postimg";
 import { AuthContext } from "../../Context/UserContext";
 
 const SignUp = () => {
@@ -34,20 +34,10 @@ const SignUp = () => {
   
    
    
-    // convert image
-    const formData = new FormData();
-    // 125913941a6683504c02b588ca87138f
-    formData.append("image", image);
 
-    const url =
-      "https://api.imgbb.com/1/upload?key=125913941a6683504c02b588ca87138f";
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const imageUrl = data.data.display_url;
+    PostImage(image)
+      .then((imageUrl) => {
+       
         // create user
         createUser(email, password)
           .then((result) => {

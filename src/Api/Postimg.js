@@ -1,4 +1,4 @@
-export const Postimg =async (image) => {
+export const PostImage =async (image) => {
     const formData = new FormData();
     formData.append("image", image);
 

@@ -1,40 +1,19 @@
-import React from "react";
+import React from 'react';
 import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
-const AllUsers = () => {
-  const url = `http://localhost:5000/users`;
-  const { data: allUsers = [], refetch, isLoading } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await fetch(url);
-      const data = await res.json();
-      return data;
-    },
-  });
-
-  const handleMakeSeller = (id) => {
-    fetch(`http://localhost:5000/users/seller/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("made Seller");
-          refetch();
+const AllSeller = () => {
+    const url =`http://localhost:5000/seller`
+    const {data: allSeller=[], refetch} = useQuery({
+        queryKey : ['users'],
+        queryFn: async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
         }
-      });
-  };
-  if(isLoading){
-    return <div>spinner</div>
-  }
-
-  return (
-    <div>
-      <div className="overflow-x-auto w-full">
+    })
+    return (
+        <div>
+                 <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
             <tr>
@@ -50,7 +29,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers.map((user, i) => (
+            {allSeller.map((seller, i) => (
               <tr key={i}>
                 <th>
                   <label>
@@ -68,13 +47,13 @@ const AllUsers = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{user.email}</div>
+                      <div className="font-bold">{seller.email}</div>
                       <div className="text-sm opacity-50">United States</div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  {user._id}
+                  {seller._id}
                   <br />
                   <span className="badge badge-ghost badge-sm">
                     Desktop Support Technician
@@ -82,9 +61,9 @@ const AllUsers = () => {
                 </td>
                 <td>Purple</td>
                 <th>
-                  {user?.role !== "seller" && (
+                  {seller?.role !== "seller" && (
                     <button
-                      onClick={() => handleMakeSeller(user._id)}
+                    //   onClick={ }
                       className="btn btn-info btn-xs"
                     >
                       make Seller
@@ -96,8 +75,9 @@ const AllUsers = () => {
           </tbody>
         </table>
       </div>
-    </div>
-  );
+            
+        </div>
+    );
 };
 
-export default AllUsers;
+export default AllSeller;

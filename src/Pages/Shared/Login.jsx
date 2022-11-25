@@ -19,7 +19,10 @@ const Login = () => {
         logInUser(email, password)
         .then(result => {
             const user = result.user;
-            setAuthToken(user);
+            const currUser ={
+              email: user.email
+            }
+            setAuthToken(currUser);
             toast.success('login successful!');
             navigate(from, { replace: true });
           })
