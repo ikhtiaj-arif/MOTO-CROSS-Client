@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../Api/Auth";
@@ -12,14 +12,28 @@ const SignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
 
+  const [checked, setChecked] = useState(false);
+  const [role, setRole] = useState(null);
+
+  useEffect(()=>{
+    if(checked){
+      setRole('sellerRequest')
+    }
+    else{setRole(null)}
+  }, [checked])
+  
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const location = form.location.value;
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
-
+  
+   
+   
     // convert image
     const formData = new FormData();
     // 125913941a6683504c02b588ca87138f
@@ -38,6 +52,7 @@ const SignUp = () => {
         createUser(email, password)
           .then((result) => {
             const user = result.user;
+          
             const profile = {
               displayName: name,
               photoURL: imageUrl,
@@ -45,7 +60,13 @@ const SignUp = () => {
 
             updateUser(profile)
               .then(() => {
-                setAuthToken(user);
+              const userData = {
+                location: location,
+                image: imageUrl,
+                role: role,
+                email: user?.email
+              }
+                setAuthToken(userData);
                 toast.success("user created!");
                 navigate(from, { replace: true });
               })
@@ -70,7 +91,9 @@ const SignUp = () => {
         // navigate(from, { replace: true });
       })
       .catch((e) => console.log(e));
-  };
+    }
+
+  
 
   return (
     <div className="flex justify-center items-center pt-8">
@@ -144,15 +167,15 @@ const SignUp = () => {
             </div>
           </div>
           <div>
-            <select 
-           className="select select-primary w-full max-w-xs">
-              <option disabled selected>
-                Select Your Location
-              </option>
-              <option value='Dhaka'>Dhaka</option>
-              <option value='Rajshahi'>Rajshahi</option>
-              <option value='Chittagong'>Chittagong</option>
-            </select>
+          <input
+                // required
+                type="location"
+                name="location"
+                id="location"
+                placeholder="Enter Your location Here"
+                className="input input-bordered input-primary w-full"
+                data-temp-mail-org="0"
+              />
           </div>
 
           <div className="">
@@ -161,7 +184,7 @@ const SignUp = () => {
                 <span className="label-text">Request To Become A Seller</span>
                 <input
                   type="checkbox"
-                  checked
+                  onChange={()=>setChecked(!checked)}
                   className="checkbox checkbox-primary"
                 />
               </label>

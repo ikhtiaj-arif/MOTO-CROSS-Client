@@ -1,15 +1,13 @@
-export const setAuthToken = (user) => {
-    const currentUser = {
-      email: user.email,
-    }
+export const setAuthToken = (userData) => {
+   
   // http://localhost:5000
     // save user in db and get token 
-    fetch(`http://localhost:5000/users/${user?.email}`, {
+    fetch(`http://localhost:5000/users/${userData?.email}`, {
       method: "PUT",
       headers: {
           'content-type': 'application/json'
       },
-      body: JSON.stringify(currentUser)
+      body: JSON.stringify(userData)
     })
     .then(res => res.json())
     .then(data =>{
