@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { getRole } from "../Api/User";
+import { AuthContext } from "../Context/UserContext";
 import Nav from "../Pages/Shared/Nav";
 
 const Dashboard = () => {
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true)
+  const [role, setRole] = useState(null)
+
+  useEffect(()=>{
+    setLoading(true)
+    getRole(user?.email)
+    .then(data => {
+      console.log(data);
+      setRole(data);
+      setLoading(false)
+    })
+
+  },[user?.email])
+
+  if(loading){
+    return <div>spinner.....</div>
+  }
+
   return (
     <div>
       <Nav></Nav>
@@ -25,7 +46,7 @@ const Dashboard = () => {
               <Link to="/dashboard/allUsers">All Users</Link>
             </li>
 
-            {/*conditional routes for seller */}
+            {role}
             {/*conditional routes for admin */}
           </ul>
         </div>
