@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { SetSellerInfo } from "../../../Api/User";
 
 const AllUsers = () => {
   const url = `http://localhost:5000/users`;
@@ -14,13 +15,8 @@ const AllUsers = () => {
   });
 
   const handleMakeSeller = (id) => {
-    fetch(`http://localhost:5000/users/seller/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
-      },
-    })
-      .then((res) => res.json())
+    const sellerRole = { role: 'seller'}
+    SetSellerInfo(id, sellerRole)
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("made Seller");

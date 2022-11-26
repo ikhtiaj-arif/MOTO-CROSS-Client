@@ -1,42 +1,81 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/UserContext";
 import { useQuery } from "@tanstack/react-query";
+import { getUserInfo } from "../../../Api/User";
+import { PostImage } from "../../../Api/Postimg";
+import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
+  const [userInfo, setUserInfo] = useState("");
+  useEffect(() => {
+    getUserInfo(user?.email).then((data) => setUserInfo(data));
+  }, [user?.email]);
 
-  const url = `http://localhost:5000/categories`
-  const {data: categories=[], isLoading} = useQuery({
-    queryKey: ['Category'],
+  // console.log(userInfo);
+
+  const url = `http://localhost:5000/categories`;
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["Category"],
     queryFn: async () => {
-        const res = await fetch(url);
-        const data = await res.json();
-        return data;
-    }
-  })
-
-const  handleAddProduct = (event) => {
-    event.preventDefault()
-const newProduct = {
-    name: 'xxx',
-    price: 21323
-}
-fetch('http://localhost:5000/bike', {
-    method: "POST",
-    headers: {
-        'content-tye': 'application/json'
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
     },
-    body: JSON.stringify(newProduct)
-})
-.then(res => res.json())
-.then(data => console.log(data))
+  });
+console.log(userInfo);
+  const handleAddProduct = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const bikeName = form.bikeName.value;
+    const condition = form.condition.value;
+    const price = form.price.value;
+    const orgPrice = form.org_price.value;
+    const used = form.used.value;
+    const location = form.address.value;
+    const category = form.category.value;
+    const phone = form.phone.value;
+    const image = form.image.files[0];
+
+    PostImage(image).then((imgUrl) => {
+      const product = {
+        picture: imgUrl,
+        title: category,
+        Bike_Name: bikeName,
+        price: price,
+        org_price: orgPrice,
+        used,
+        seller_name: userInfo.displayName,
+        email: userInfo.email,
+        address: location,
+        isSellerVerified: userInfo.isSellerVerified,
+        condition,
+        phone,
+      };
+
+      fetch("http://localhost:5000/newBike", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if(data.acknowledged){
+            toast.success('booking confirmed!')
+            // navigate('/')
+        }
+        });
+    });
+  };
 
 
-}
-
-if(isLoading){
-    return <>spinner</>
-}
+  if (isLoading) {
+    return <>spinner</>;
+  }
 
   return (
     <form onSubmit={handleAddProduct}>
@@ -52,6 +91,7 @@ if(isLoading){
             </label>
             <input
               id="bikeName"
+              name="bikeName"
               type="text"
               placeholder=" "
               className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
@@ -59,12 +99,12 @@ if(isLoading){
           </div>
           <div className="col-span-full sm:col-span-3">
             <label for="orgPrice" className="text-sm">
-              Condition
+              Current Condition Of The Bike:
             </label>
             <input
               id="condition"
               name="condition"
-              type="number"
+              type="text"
               placeholder=""
               className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
             />
@@ -76,6 +116,7 @@ if(isLoading){
             </label>
             <input
               id="price"
+              name="price"
               type="text"
               placeholder=""
               className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
@@ -93,21 +134,56 @@ if(isLoading){
               className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
             />
           </div>
-        
+          <div className="col-span-full sm:col-span-3">
+            <label for="orgPrice" className="text-sm">
+              Days Used
+            </label>
+            <input
+              id="used"
+              name="used"
+              type="number"
+              placeholder=""
+              className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
+            />
+          </div>
+          <div className="col-span-full sm:col-span-3">
+            <label for="orgPrice" className="text-sm">
+              Contact
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="number"
+              placeholder=""
+              className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
+            />
+          </div>
+
           <div className="col-span-full">
             <label for="orgPrice" className="text-sm">
               Upload Picture Of The Bike:
             </label>
-            <input type="file" className="file-input w-full max-w-xs" />
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              className="file-input w-full max-w-xs"
+            />
           </div>
           <div className="col-span-full">
-            <select className="select select-bordered w-full max-w-xs">
+            <select
+              name="category"
+              className="select select-bordered w-full max-w-xs"
+            >
               <option disabled selected>
                 Chose The Category
               </option>
-              {categories.map(e => <option
-              key={e}
-              >{e.title}</option>)}
+              {categories.map((e) => (
+                <option key={e} value={e.title}>
+                  {e.title}
+                </option>
+              ))}
             </select>
           </div>
           <div className="col-span-full">
@@ -116,6 +192,7 @@ if(isLoading){
             </label>
             <input
               id="address"
+              name="address"
               type="text"
               placeholder=""
               className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
@@ -123,20 +200,12 @@ if(isLoading){
           </div>
 
           <div className="col-span-full ">
-            <label for="zip" className="text-sm">
-              ZIP / Postal
-            </label>
-            <input
-              id="zip"
-              type="text"
-              placeholder=""
-              className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"
-            />
+            <button type="submit" className="btn btn-success w-full">
+              ADD NEW BIKE
+            </button>
           </div>
         </div>
-        <button type="submit" className="btn btn-success w-full">ADD NEW BIKE</button>
       </fieldset>
-    
     </form>
   );
 };

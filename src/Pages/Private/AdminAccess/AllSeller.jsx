@@ -1,16 +1,31 @@
 import React from 'react';
 import { useQuery } from "@tanstack/react-query";
+import { SetSellerInfo } from '../../../Api/User';
+import toast from "react-hot-toast";
 
 const AllSeller = () => {
     const url =`http://localhost:5000/seller`
     const {data: allSeller=[], refetch} = useQuery({
-        queryKey : ['users'],
+        queryKey : ['seller'],
         queryFn: async () => {
             const res = await fetch(url);
             const data = await res.json();
             return data;
         }
     })
+   
+    const VerifySeller = (id) => {
+      const sellerVerified = { isSellerVerified : "verified"}
+      SetSellerInfo(id, sellerVerified)
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Seller Verified!");
+          refetch();
+        }
+      });
+    }
+
+
     return (
         <div>
                  <div className="overflow-x-auto w-full">
@@ -61,12 +76,12 @@ const AllSeller = () => {
                 </td>
                 <td>Purple</td>
                 <th>
-                  {seller?.role !== "seller" && (
+                  {seller?.isSellerVerified !== "verified" && (
                     <button
-                    //   onClick={ }
+                      onClick={()=>VerifySeller(seller._id)}
                       className="btn btn-info btn-xs"
                     >
-                      make Seller
+                      Verify Seller
                     </button>
                   )}
                 </th>

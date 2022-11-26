@@ -15,6 +15,4 @@ export const setAuthToken = (userData) => {
       // save token to local storage
       localStorage.setItem('motocross-token', data.token)
     })
-  
-  
   };
