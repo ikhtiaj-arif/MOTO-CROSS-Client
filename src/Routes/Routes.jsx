@@ -9,6 +9,7 @@ import AllSeller from "../Pages/Private/AdminAccess/AllSeller";
 import AllUsers from "../Pages/Private/AdminAccess/AllUsers";
 import MyBookings from "../Pages/Private/MyBookings";
 import AddProducts from "../Pages/Private/Seller/AddProducts";
+import MyProducts from "../Pages/Private/Seller/MyProducts";
 import Login from "../Pages/Shared/Login";
 import SignUp from "../Pages/Shared/SignUp";
 import PrivateRoute from "./PrivateRoute";
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addProduct',
                 element: <AddProducts/>
+            },
+            {
+                path: '/dashboard/myProducts',
+                element: <MyProducts/>
             },
         ]
     }

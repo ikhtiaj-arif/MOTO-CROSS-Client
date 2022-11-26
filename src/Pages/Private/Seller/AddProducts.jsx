@@ -3,11 +3,13 @@ import { AuthContext } from "../../../Context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import { getUserInfo } from "../../../Api/User";
 import { PostImage } from "../../../Api/Postimg";
+import { useNavigate } from 'react-router-dom'
 import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState("");
+  const navigate = useNavigate()
   useEffect(() => {
     getUserInfo(user?.email).then((data) => setUserInfo(data));
   }, [user?.email]);
@@ -54,7 +56,7 @@ console.log(userInfo);
         phone,
       };
 
-      fetch("http://localhost:5000/newBike", {
+      fetch("http://localhost:5000/bike", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -66,7 +68,7 @@ console.log(userInfo);
           console.log(data);
           if(data.acknowledged){
             toast.success('booking confirmed!')
-            // navigate('/')
+            navigate('/dashboard/myProduct')
         }
         });
     });

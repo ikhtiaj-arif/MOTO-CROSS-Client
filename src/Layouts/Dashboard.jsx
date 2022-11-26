@@ -24,6 +24,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Nav></Nav>
       <label
         htmlFor="dashboard-drawer"
         className="btn btn-primary drawer-button md:hidden"
@@ -61,7 +62,7 @@ const Dashboard = () => {
             {role === "seller" && (
               <>
                 <li>
-                  <Link to="/dashboard/">My Products</Link>
+                  <Link to="/dashboard/myProducts">My Products</Link>
                 </li>
                 <li>
                   <Link to="/dashboard/addProduct">Add Products</Link>
