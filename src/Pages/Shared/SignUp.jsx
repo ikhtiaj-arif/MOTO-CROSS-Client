@@ -6,7 +6,7 @@ import { PostImage } from "../../Api/Postimg";
 import { AuthContext } from "../../Context/UserContext";
 
 const SignUp = () => {
-  const { createUser, updateUser, signInWithGoogle, loading, setLoading } =
+  const { createUser, updateUser, googleLogin, loading, setLoading } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -73,7 +73,7 @@ const SignUp = () => {
   };
 
   const handleGoogleLogin = () => {
-    signInWithGoogle()
+    googleLogin()
       .then((result) => {
         const user = result.user;
         toast.success("login successful!");
@@ -156,30 +156,39 @@ const SignUp = () => {
               />
             </div>
           </div>
-          <div>
-          <input
-                // required
-                type="location"
-                name="location"
-                id="location"
-                placeholder="Enter Your location Here"
-                className="input input-bordered input-primary w-full"
-                data-temp-mail-org="0"
-              />
-          </div>
 
+          <div className="divider ">OR</div>
           <div className="">
             <div className="form-control">
-              <label className="cursor-pointer label">
-                <span className="label-text">Request To Become A Seller</span>
+              <label className="cursor-pointer label justify-center">
+                <span className="label-text font-medium">Request To Become A Seller</span>
                 <input
                   type="checkbox"
                   onChange={()=>setChecked(!checked)}
-                  className="checkbox checkbox-primary"
+                  className="checkbox checkbox-primary ml-2"
                 />
               </label>
             </div>
 
+            <select
+              name="location"
+              className="select select-bordered w-full max-w-xs"
+            >
+              <option disabled selected>
+                Chose Your Location
+              </option>
+              
+                <option value='Rajshahi'>Rajshahi</option>
+                <option value='Dhaka'>Dhaka</option>
+                <option value='Rangpur'>Rangpur</option>
+                <option value='Chittagong'>Chittagong</option>
+              
+            </select>
+
+
+
+
+              </div>
             <div>
               <button
                 type="submit"
@@ -188,7 +197,6 @@ const SignUp = () => {
                 Sign up
               </button>
             </div>
-          </div>
         </form>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

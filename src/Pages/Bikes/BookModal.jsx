@@ -36,7 +36,7 @@ const BookModal = ({ bikeInfo }) => {
      .then(data => {
         if(data.acknowledged){
             toast.success('booking confirmed!')
-            navigate('/myBookings')
+            navigate('/dashboard/myBookings')
         }
      })
 
