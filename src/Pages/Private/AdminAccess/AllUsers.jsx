@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { SetSellerInfo } from "../../../Api/User";
+import ConfirmationModal from "../../../Components/ConfirmationModal";
 
 const AllUsers = () => {
+
+  const [deleteDoc, setDeleteDoc] = useState(null);
+  const closeModal =() => {
+    setDeleteDoc(null)
+  }
+
   const url = `http://localhost:5000/users`;
   const { data: allUsers = [], refetch, isLoading } = useQuery({
     queryKey: ["users"],
@@ -24,6 +31,28 @@ const AllUsers = () => {
         }
       });
   };
+
+
+  
+  const handleDelete =(user) => {
+    fetch(`http://localhost:5000/user/${user._id}`,{
+      method: "DELETE"
+     
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.deletedCount>0){
+        toast.success(`${user.name} Successfully Deleted!`)
+        refetch()
+      }
+    })
+  }
+
+
+
+
+
   if(isLoading){
     return <div>spinner</div>
   }
@@ -78,7 +107,7 @@ const AllUsers = () => {
                 </td>
                 <td>Purple</td>
                 <th>
-                  {user?.role !== "seller" && (
+                  {user?.role === "sellerRequest" && (
                     <button
                       onClick={() => handleMakeSeller(user._id)}
                       className="btn btn-info btn-xs"
@@ -87,10 +116,24 @@ const AllUsers = () => {
                     </button>
                   )}
                 </th>
+                <th>
+                <label
+                    htmlFor="confirmation-modal"
+                    onClick={()=> setDeleteDoc(user)}
+                    className="btn"
+                  >
+                    Delete{" "}
+                  </label>
+                </th>
               </tr>
             ))}
           </tbody>
         </table>
+        {  deleteDoc && <ConfirmationModal
+      handleDeleteDoc={handleDelete}
+      deleteDoc={deleteDoc}
+      cancel={closeModal}
+     ></ConfirmationModal>}
       </div>
     </div>
   );

@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 import BookModal from "./BookModal";
+import ConfirmationModal from "../../Components/ConfirmationModal";
+import ReportModal from "../../Components/ReportModal";
 
 const BikeInfo = () => {
+  const [report, setReport] = useState(null);
+  const closeModal =() => {
+    setReport(null)
+  }
 
     const bikeInfo = useLoaderData();
     const {Bike_Name,used, location, org_price, picture, price, seller_name,isVerified, _id} = bikeInfo
+
+  const handleReport = () => {
+
+  }
+
+
 
   return (
     <div>
@@ -36,11 +48,12 @@ const BikeInfo = () => {
           </div>
           <div className="card-actions justify-end">
           <label htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
-           
+          <label htmlFor="report-modal" className="btn">report</label>
           </div>
         </div>
       </div>
         <BookModal bikeInfo={bikeInfo}/>
+        <ReportModal bikeInfo={bikeInfo}></ReportModal>
 
     </div>
   );

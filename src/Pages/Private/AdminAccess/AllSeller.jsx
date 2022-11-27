@@ -1,34 +1,61 @@
-import React from 'react';
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { SetSellerInfo } from '../../../Api/User';
+import { SetSellerInfo } from "../../../Api/User";
 import toast from "react-hot-toast";
+import ConfirmationModal from "../../../Components/ConfirmationModal";
 
 const AllSeller = () => {
-    const url =`http://localhost:5000/seller`
-    const {data: allSeller=[], refetch} = useQuery({
-        queryKey : ['seller'],
-        queryFn: async () => {
-            const res = await fetch(url);
-            const data = await res.json();
-            return data;
+
+  const [deleteDoc, setDeleteDoc] = useState(null);
+  const closeModal =() => {
+    setDeleteDoc(null)
+  }
+
+
+
+  const url = `http://localhost:5000/seller`;
+  const { data: allSeller = [], refetch } = useQuery({
+    queryKey: ["seller"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const VerifySeller = (id) => {
+    const sellerVerified = { isSellerVerified: "verified" };
+    SetSellerInfo(id, sellerVerified).then((data) => {
+      if (data.modifiedCount > 0) {
+        toast.success("Seller Verified!");
+        refetch();
+      }
+    });
+  };
+
+ 
+    const handleDelete =(seller) => {
+      fetch(`http://localhost:5000/user/${seller._id}`,{
+        method: "DELETE"
+       
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if(data.deletedCount>0){
+          toast.success(`${seller.name} Successfully Deleted!`)
+          refetch()
         }
-    })
-   
-    const VerifySeller = (id) => {
-      const sellerVerified = { isSellerVerified : "verified"}
-      SetSellerInfo(id, sellerVerified)
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Seller Verified!");
-          refetch();
-        }
-      });
+      })
     }
 
+  
 
-    return (
-        <div>
-                 <div className="overflow-x-auto w-full">
+  return (
+    <div>
+  
+
+      <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
             <tr>
@@ -78,21 +105,35 @@ const AllSeller = () => {
                 <th>
                   {seller?.isSellerVerified !== "verified" && (
                     <button
-                      onClick={()=>VerifySeller(seller._id)}
+                      onClick={() => VerifySeller(seller._id)}
                       className="btn btn-info btn-xs"
                     >
                       Verify Seller
                     </button>
                   )}
                 </th>
+                <th>
+                  <label
+                    htmlFor="confirmation-modal"
+                    onClick={()=> setDeleteDoc(seller)}
+                    className="btn"
+                  >
+                    Delete{" "}
+                  </label>
+                </th>
               </tr>
             ))}
           </tbody>
         </table>
+        {  deleteDoc && <ConfirmationModal
+      handleDeleteDoc={handleDelete}
+      deleteDoc={deleteDoc}
+      cancel={closeModal}
+     ></ConfirmationModal>}
       </div>
-            
-        </div>
-    );
+ 
+    </div>
+  );
 };
 
 export default AllSeller;

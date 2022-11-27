@@ -57,6 +57,9 @@ const Dashboard = () => {
                 <li>
                   <Link to="/dashboard/allSeller">All Seller</Link>
                 </li>
+                <li>
+                  <Link to="/dashboard/reports">Reported Items</Link>
+                </li>
               </>
             )}
             {role === "seller" && (

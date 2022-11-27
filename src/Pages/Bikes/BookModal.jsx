@@ -82,10 +82,10 @@ const BookModal = ({ bikeInfo }) => {
             />
             <input
               type="text"
-              name="email"
+              name="price"
               defaultValue={price}
               disabled
-              placeholder="Email"
+              placeholder="price"
               className="input input-bordered w-full mb-4"
             />
             <input
