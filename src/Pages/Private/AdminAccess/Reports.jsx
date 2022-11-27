@@ -7,14 +7,17 @@ import ConfirmationModal from '../../../Components/ConfirmationModal';
 
 
 const Reports = () => {
- 
-    const [deleteDoc, setDeleteDoc] = useState('')
+  const [deleteDoc, setDeleteDoc] = useState(null);
+  const closeModal =() => {
+    setDeleteDoc(null)
+  }
 
 
 
   
 // get reports
     const url = `http://localhost:5000/reports`;
+    
   const { data: reports = [], refetch, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -31,11 +34,9 @@ const Reports = () => {
   
 
 
-      const handleDeleteProduct =(id) => {
-       
+      const handleDelete =(id) => {
         fetch(`http://localhost:5000/bike/${id}`,{
           method: "DELETE"
-         
         })
         .then(res => res.json())
         .then(data => {
@@ -128,11 +129,11 @@ const Reports = () => {
               ))}
             </tbody>
           </table>
-          {  reports && <ConfirmationModal
-        handleDeleteDoc={handleDeleteProduct}
-        deleteDoc={deleteDoc}
-        // cancel={}
-       ></ConfirmationModal>}
+          {  deleteDoc && <ConfirmationModal
+      handleDeleteDoc={handleDelete}
+      deleteDoc={deleteDoc}
+      cancel={closeModal}
+     ></ConfirmationModal>}
          
         </div>
    

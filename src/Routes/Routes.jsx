@@ -9,6 +9,7 @@ import AllSeller from "../Pages/Private/AdminAccess/AllSeller";
 import AllUsers from "../Pages/Private/AdminAccess/AllUsers";
 import Reports from "../Pages/Private/AdminAccess/Reports";
 import MyBookings from "../Pages/Private/MyBookings";
+import Payment from "../Pages/Private/Payment";
 import AddProducts from "../Pages/Private/Seller/AddProducts";
 import MyProducts from "../Pages/Private/Seller/MyProducts";
 import Login from "../Pages/Shared/Login";
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myBookings',
                 element: <MyBookings/>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment/>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {
                 path: '/dashboard/allUsers',

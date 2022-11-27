@@ -1,13 +1,19 @@
+
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/UserContext";
+import { Link } from 'react-router-dom'
+
+
+
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
 
+
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-  const { data: bookings = [] } = useQuery({
+  const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -20,7 +26,9 @@ const MyBookings = () => {
     },
   });
 
-  console.log(bookings);
+if(isLoading){
+  return <>spinner</>
+}
 
   return (
     <div>
@@ -38,6 +46,7 @@ const MyBookings = () => {
           <tbody>
             {bookings.map((product, i) => (
               <tr key={i}>
+       
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -49,7 +58,7 @@ const MyBookings = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">Hart Hagerty</div>
+                      <div className="font-bold">{product.number}</div>
                       {/* <div className="text-sm opacity-50">United States</div> */}
                     </div>
                   </div>
@@ -63,7 +72,7 @@ const MyBookings = () => {
                 </td>
                 <td>Purple</td>
                 <th>
-                  <button className="btn btn-success btn-xs">pay</button>
+                  <Link to={`/dashboard/payment/${product._id}`}><button className="btn btn-success btn-xs">pay</button></Link>
                   <button className="btn btn-error btn-xs mx-2">X</button>
                 </th>
               </tr>
