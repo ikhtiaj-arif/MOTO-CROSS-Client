@@ -5,18 +5,23 @@ import { SetSellerInfo } from "../../../Api/User";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
 
 const AllUsers = () => {
-
   const [deleteDoc, setDeleteDoc] = useState(null);
-  const closeModal =() => {
-    setDeleteDoc(null)
-  }
+  const closeModal = () => {
+    setDeleteDoc(null);
+  };
 
-  const url = `http://localhost:5000/users`;
-  const { data: allUsers = [], refetch, isLoading } = useQuery({
+  const url = `https://server-nine-black.vercel.app/users`;
+  const {
+    data: allUsers = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(url,{
-        headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+        },
       });
       const data = await res.json();
       return data;
@@ -24,40 +29,34 @@ const AllUsers = () => {
   });
 
   const handleMakeSeller = (id) => {
-    const sellerRole = { role: 'seller'}
-    SetSellerInfo(id, sellerRole)
+    const sellerRole = { role: "seller" };
+    SetSellerInfo(id, sellerRole).then((data) => {
+      if (data.modifiedCount > 0) {
+        toast.success("made Seller");
+        refetch();
+      }
+    });
+  };
+
+  const handleDelete = (user) => {
+    fetch(`https://server-nine-black.vercel.app/user/${user._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+      },
+    })
+      .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("made Seller");
+        console.log(data);
+        if (data.deletedCount > 0) {
+          toast.success(`${user.name} Successfully Deleted!`);
           refetch();
         }
       });
   };
 
-
-  
-  const handleDelete =(user) => {
-    fetch(`http://localhost:5000/user/${user._id}`,{
-      method: "DELETE",
-      headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
-     
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      if(data.deletedCount>0){
-        toast.success(`${user.name} Successfully Deleted!`)
-        refetch()
-      }
-    })
-  }
-
-
-
-
-
-  if(isLoading){
-    return <div>spinner</div>
+  if (isLoading) {
+    return <div>spinner</div>;
   }
 
   return (
@@ -120,9 +119,9 @@ const AllUsers = () => {
                   )}
                 </th>
                 <th>
-                <label
+                  <label
                     htmlFor="confirmation-modal"
-                    onClick={()=> setDeleteDoc(user)}
+                    onClick={() => setDeleteDoc(user)}
                     className="btn"
                   >
                     Delete{" "}
@@ -132,11 +131,13 @@ const AllUsers = () => {
             ))}
           </tbody>
         </table>
-        {  deleteDoc && <ConfirmationModal
-      handleDeleteDoc={handleDelete}
-      deleteDoc={deleteDoc}
-      cancel={closeModal}
-     ></ConfirmationModal>}
+        {deleteDoc && (
+          <ConfirmationModal
+            handleDeleteDoc={handleDelete}
+            deleteDoc={deleteDoc}
+            cancel={closeModal}
+          ></ConfirmationModal>
+        )}
       </div>
     </div>
   );

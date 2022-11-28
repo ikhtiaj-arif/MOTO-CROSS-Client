@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/UserContext";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const BookModal = ({ bikeInfo }) => {
-  const {Bike_Name,price,_id} = bikeInfo;
+  const { Bike_Name, price, _id } = bikeInfo;
   const navigate = useNavigate();
 
   const { user, loading } = useContext(AuthContext);
@@ -17,34 +17,31 @@ const BookModal = ({ bikeInfo }) => {
     const number = form.number.value;
     const location = form.location.value;
     console.log(userName, email);
-     const booking = {
-        productId : _id,
-        userName,
-        email,
-        number,
-        price,
-        location 
-     }
+    const booking = {
+      productId: _id,
+      userName,
+      email,
+      number,
+      price,
+      location,
+    };
 
-     fetch(`http://localhost:5000/bookings`, {
-        method: "POST",
-        headers: {
-          'content-type': 'application/json',
-          authorization: `bearer ${localStorage.getItem('motocross-token')}`
-        },
-        body: JSON.stringify(booking)
-     })
-     .then(res => res.json())
-     .then(data => {
-        if(data.acknowledged){
-            toast.success('booking confirmed!')
-            navigate('/dashboard/myBookings')
+    fetch(`https://server-nine-black.vercel.app/bookings`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("booking confirmed!");
+          navigate("/dashboard/myBookings");
         }
-     })
-
+      });
   };
-
-
 
   return (
     <div>

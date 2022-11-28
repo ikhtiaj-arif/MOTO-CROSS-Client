@@ -3,31 +3,33 @@ import { AuthContext } from "../../../Context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import { getUserInfo } from "../../../Api/User";
 import { PostImage } from "../../../Api/Postimg";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     getUserInfo(user?.email).then((data) => setUserInfo(data));
   }, [user?.email]);
 
   // console.log(userInfo);
 
-  const url = `http://localhost:5000/categories`;
+  const url = `https://server-nine-black.vercel.app/categories`;
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["Category"],
     queryFn: async () => {
-      const res = await fetch(url,{
-        headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+        },
       });
       const data = await res.json();
       return data;
     },
   });
-console.log(userInfo);
+  console.log(userInfo);
   const handleAddProduct = (event) => {
     event.preventDefault();
 
@@ -56,29 +58,28 @@ console.log(userInfo);
         isSellerVerified: userInfo.isSellerVerified,
         condition,
         phone,
-        status: "available"
+        status: "available",
       };
       console.log(product);
-      
-      fetch("http://localhost:5000/bike", {
+
+      fetch("https://server-nine-black.vercel.app/bike", {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem('motocross-token')}`
+          authorization: `bearer ${localStorage.getItem("motocross-token")}`,
         },
         body: JSON.stringify(product),
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if(data.acknowledged){
-            toast.success('booking confirmed!')
-            navigate('/dashboard/myProduct')
-        }
+          if (data.acknowledged) {
+            toast.success("booking confirmed!");
+            navigate("/dashboard/myProduct");
+          }
         });
     });
   };
-
 
   if (isLoading) {
     return <>spinner</>;

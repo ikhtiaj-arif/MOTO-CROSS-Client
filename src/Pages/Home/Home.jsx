@@ -7,8 +7,8 @@ const Home = () => {
     return (
      <div className="mt-8">
       <BannerHome/>
-      <Advertisement/>
       <Categories/>
+      <Advertisement/>
             {/* add more section at the end */}
        </div>
     );

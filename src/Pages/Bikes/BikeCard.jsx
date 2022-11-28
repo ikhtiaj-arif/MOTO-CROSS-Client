@@ -16,20 +16,20 @@ const BikeCard = ({ bike }) => {
   } = bike;
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md ">
         <Link href="#">
           <img className="rounded-t-lg" src={picture} alt="" />
         </Link>
         <div className="p-5">
           <Link href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight ">
               {Bike_Name}
             </h5>
           </Link>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal ">
             Original Price: {org_price} Current Price: {price}
           </p>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal ">
             Used For : {used} days. Location: {location}
           </p>
 
@@ -44,7 +44,7 @@ const BikeCard = ({ bike }) => {
 
           <Link
             to={`/bike/${_id}`}
-            className="inline-flex items-center btn btn-info"
+            className="inline-flex items-center btn btn-accent"
           >
             More
             <svg

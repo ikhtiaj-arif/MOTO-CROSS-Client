@@ -1,30 +1,29 @@
-
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/UserContext";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import ConfirmationModal from "../../Components/ConfirmationModal";
-
-
-
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [deleteDoc, setDeleteDoc] = useState(null);
-  const closeModal =() => {
-    setDeleteDoc(null)
-  }
+  const closeModal = () => {
+    setDeleteDoc(null);
+  };
 
+  const url = `https://server-nine-black.vercel.app/bookings?email=${user?.email}`;
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
-
-  const { data: bookings = [], isLoading, refetch } = useQuery({
+  const {
+    data: bookings = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
-            authorization: `bearer ${localStorage.getItem('motocross-token')}`
-        }
+          authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+        },
       });
       const data = res.json();
       return data;
@@ -32,24 +31,22 @@ const MyBookings = () => {
   });
 
   const handleBookingDelete = (id) => {
-    fetch(`http://localhost:5000/bookings/${id}`,{
-      method: 'DELETE',
+    fetch(`https://server-nine-black.vercel.app/bookings/${id}`, {
+      method: "DELETE",
       headers: {
-        authorization: `bearer ${localStorage.getItem('motocross-token')}`
-       }
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+      },
     })
-    .then(res=>res.json())
-    .then(data => {
-      console.log(data);
-      refetch()
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+      });
+  };
 
+  if (isLoading) {
+    return <>spinner</>;
   }
-
-
-if(isLoading){
-  return <>spinner</>
-}
 
   return (
     <div>
@@ -67,7 +64,6 @@ if(isLoading){
           <tbody>
             {bookings.map((booking, i) => (
               <tr key={i}>
-       
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -93,26 +89,34 @@ if(isLoading){
                 </td>
                 <td>Purple</td>
                 <th>
-                  {
-                    booking.paid ?
+                  {booking.paid ? (
                     <>PAID</>
-                    :
+                  ) : (
                     <>
-                     <Link to={`/dashboard/payment/${booking._id}`}><button className="btn btn-success btn-xs">pay</button></Link>
-                  <label htmlFor="confirmation-modal" onClick={()=>setDeleteDoc(booking._id)} className="btn btn-error btn-xs mx-2">X</label>
+                      <Link to={`/dashboard/payment/${booking._id}`}>
+                        <button className="btn btn-success btn-xs">pay</button>
+                      </Link>
+                      <label
+                        htmlFor="confirmation-modal"
+                        onClick={() => setDeleteDoc(booking._id)}
+                        className="btn btn-error btn-xs mx-2"
+                      >
+                        X
+                      </label>
                     </>
-                  }
-                 
+                  )}
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
-        {  deleteDoc && <ConfirmationModal
-      handleDeleteDoc={handleBookingDelete}
-      deleteDoc={deleteDoc}
-      cancel={closeModal}
-     ></ConfirmationModal>}
+        {deleteDoc && (
+          <ConfirmationModal
+            handleDeleteDoc={handleBookingDelete}
+            deleteDoc={deleteDoc}
+            cancel={closeModal}
+          ></ConfirmationModal>
+        )}
       </div>
     </div>
   );

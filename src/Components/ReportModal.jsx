@@ -19,12 +19,11 @@ const ReportModal = ({ bikeInfo }) => {
       productId,
       userEmail,
     };
-    fetch(`http://localhost:5000/reports`, {
+    fetch(`https://server-nine-black.vercel.app/reports`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("motocross-token")}`,
-       
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
       },
       body: JSON.stringify(report),
     })

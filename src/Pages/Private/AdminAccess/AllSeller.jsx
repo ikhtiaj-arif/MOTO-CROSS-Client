@@ -5,20 +5,19 @@ import toast from "react-hot-toast";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
 
 const AllSeller = () => {
-
   const [deleteDoc, setDeleteDoc] = useState(null);
-  const closeModal =() => {
-    setDeleteDoc(null)
-  }
+  const closeModal = () => {
+    setDeleteDoc(null);
+  };
 
-
-
-  const url = `http://localhost:5000/seller`;
+  const url = `https://server-nine-black.vercel.app/seller`;
   const { data: allSeller = [], refetch } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
-      const res = await fetch(url,{
-        headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+        },
       });
       const data = await res.json();
       return data;
@@ -35,29 +34,25 @@ const AllSeller = () => {
     });
   };
 
- 
-    const handleDelete =(seller) => {
-      fetch(`http://localhost:5000/user/${seller._id}`,{
-        method: "DELETE",
-        headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
-       
-      })
-      .then(res => res.json())
-      .then(data => {
+  const handleDelete = (seller) => {
+    fetch(`https://server-nine-black.vercel.app/user/${seller._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if(data.deletedCount>0){
-          toast.success(`${seller.name} Successfully Deleted!`)
-          refetch()
+        if (data.deletedCount > 0) {
+          toast.success(`${seller.name} Successfully Deleted!`);
+          refetch();
         }
-      })
-    }
-
-  
+      });
+  };
 
   return (
     <div>
-  
-
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
@@ -106,23 +101,27 @@ const AllSeller = () => {
                 </td>
                 <td>Purple</td>
                 <th>
-                  
-                  {seller?.isSellerVerified !== "verified" ?<> (
-                    <button
-                      onClick={() => VerifySeller(seller._id)}
-                      className="btn btn-info btn-xs"
-                    >
-                      Verify Seller
-                    </button>
-                  )</>:<>{seller?.isSellerVerified}</>}
+                  {seller?.isSellerVerified !== "verified" ? (
+                    <>
+                      {" "}
+                      (
+                      <button
+                        onClick={() => VerifySeller(seller._id)}
+                        className="btn btn-info btn-xs"
+                      >
+                        Verify Seller
+                      </button>
+                      )
+                    </>
+                  ) : (
+                    <>{seller?.isSellerVerified}</>
+                  )}
                 </th>
-                <th>
-                  
-                </th>
+                <th></th>
                 <th>
                   <label
                     htmlFor="confirmation-modal"
-                    onClick={()=> setDeleteDoc(seller)}
+                    onClick={() => setDeleteDoc(seller)}
                     className="btn"
                   >
                     Delete{" "}
@@ -132,13 +131,14 @@ const AllSeller = () => {
             ))}
           </tbody>
         </table>
-        {  deleteDoc && <ConfirmationModal
-      handleDeleteDoc={handleDelete}
-      deleteDoc={deleteDoc}
-      cancel={closeModal}
-     ></ConfirmationModal>}
+        {deleteDoc && (
+          <ConfirmationModal
+            handleDeleteDoc={handleDelete}
+            deleteDoc={deleteDoc}
+            cancel={closeModal}
+          ></ConfirmationModal>
+        )}
       </div>
- 
     </div>
   );
 };
