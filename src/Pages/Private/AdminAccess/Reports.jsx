@@ -12,7 +12,7 @@ const Reports = () => {
     setDeleteDoc(null)
   }
 
-
+// axios to load product
 
   
 // get reports
@@ -34,15 +34,9 @@ const Reports = () => {
   
 
 
-      const handleDelete =(id) => {
-        fetch(`http://localhost:5000/bike/${id}`,{
-          method: "DELETE"
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if(data.deletedCount>0){
-            toast.success(` Successfully Deleted!`)
+      const handleDeleteReport =(id) => {
+     
+            
             fetch(`http://localhost:5000/reports/${id}`,{
                 method: "DELETE"
                
@@ -51,16 +45,25 @@ const Reports = () => {
               .then(data => {
                 console.log(data);
                 if(data.deletedCount>0){
-                  toast.success(` Successfully Deleted!`)
-                 
+                  toast.success(`Report Successfully Deleted!`)
+                  refetch()
                 }
               })
-            refetch()
+           
           }
-        })
-      }
-   
+        
+   const handleDelete = (id) => {
+     fetch(`http://localhost:5000/bike/${id}`,{
+        method: "DELETE"
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        refetch()
+      })
 
+   }
+      
 
 
     return (
@@ -115,13 +118,24 @@ const Reports = () => {
                   </td>
                   <td>Purple</td>
                  
+                  
                   <th>
                     <label
                       htmlFor="confirmation-modal"
                       onClick={()=> setDeleteDoc(report.productId)}
                       className="btn"
                     >
-                      Delete{" "}
+                      Delete Reported Product{" "}
+                    </label>
+                  
+                  </th>
+                  <th>
+                    <label
+                      htmlFor="confirmation-modal"
+                      onClick={()=> handleDeleteReport(report._id)}
+                      className="btn btn-error"
+                    >
+                    X
                     </label>
                   
                   </th>

@@ -5,6 +5,7 @@ import Main from "../Layouts/Main";
 import BikeInfo from "../Pages/Bikes/BikeInfo";
 import BikesByTitle from "../Pages/Bikes/BikesByTitle";
 import Home from "../Pages/Home/Home";
+import AllRequestedSeller from "../Pages/Private/AdminAccess/AllRequestedSeller";
 import AllSeller from "../Pages/Private/AdminAccess/AllSeller";
 import AllUsers from "../Pages/Private/AdminAccess/AllUsers";
 import Reports from "../Pages/Private/AdminAccess/Reports";
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allSeller',
                 element: <AllSeller/>
+            },
+            {
+                path: '/dashboard/allSellerReq',
+                element: <AllRequestedSeller/>
             },
             {
                 path: '/dashboard/addProduct',

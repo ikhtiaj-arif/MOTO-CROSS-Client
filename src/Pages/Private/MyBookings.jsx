@@ -3,17 +3,22 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/UserContext";
 import { Link } from 'react-router-dom'
+import ConfirmationModal from "../../Components/ConfirmationModal";
 
 
 
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
+  const [deleteDoc, setDeleteDoc] = useState(null);
+  const closeModal =() => {
+    setDeleteDoc(null)
+  }
 
 
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-  const { data: bookings = [], isLoading } = useQuery({
+  const { data: bookings = [], isLoading, refetch } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -25,6 +30,24 @@ const MyBookings = () => {
       return data;
     },
   });
+
+  const handleBookingDelete = (id) => {
+    fetch(`http://localhost:5000/bookings/${id}`,{
+      method: 'DELETE',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('motocross-token')}`
+       }
+    })
+    .then(res=>res.json())
+    .then(data => {
+      console.log(data);
+      refetch()
+    })
+
+  }
+
+
+
 
 if(isLoading){
   return <>spinner</>
@@ -44,7 +67,7 @@ if(isLoading){
             </tr>
           </thead>
           <tbody>
-            {bookings.map((product, i) => (
+            {bookings.map((booking, i) => (
               <tr key={i}>
        
                 <td>
@@ -58,7 +81,7 @@ if(isLoading){
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{product.number}</div>
+                      <div className="font-bold">{booking.number}</div>
                       {/* <div className="text-sm opacity-50">United States</div> */}
                     </div>
                   </div>
@@ -72,13 +95,26 @@ if(isLoading){
                 </td>
                 <td>Purple</td>
                 <th>
-                  <Link to={`/dashboard/payment/${product._id}`}><button className="btn btn-success btn-xs">pay</button></Link>
-                  <button className="btn btn-error btn-xs mx-2">X</button>
+                  {
+                    booking.paid ?
+                    <>PAID</>
+                    :
+                    <>
+                     <Link to={`/dashboard/payment/${booking._id}`}><button className="btn btn-success btn-xs">pay</button></Link>
+                  <label htmlFor="confirmation-modal" onClick={()=>setDeleteDoc(booking._id)} className="btn btn-error btn-xs mx-2">X</label>
+                    </>
+                  }
+                 
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
+        {  deleteDoc && <ConfirmationModal
+      handleDeleteDoc={handleBookingDelete}
+      deleteDoc={deleteDoc}
+      cancel={closeModal}
+     ></ConfirmationModal>}
       </div>
     </div>
   );

@@ -103,6 +103,7 @@ const AllSeller = () => {
                 </td>
                 <td>Purple</td>
                 <th>
+                  
                   {seller?.isSellerVerified !== "verified" && (
                     <button
                       onClick={() => VerifySeller(seller._id)}
@@ -111,6 +112,9 @@ const AllSeller = () => {
                       Verify Seller
                     </button>
                   )}
+                </th>
+                <th>
+                  
                 </th>
                 <th>
                   <label
