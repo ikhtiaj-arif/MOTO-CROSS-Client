@@ -22,6 +22,7 @@ const BookModal = ({ bikeInfo }) => {
         userName,
         email,
         number,
+        price,
         location 
      }
 
