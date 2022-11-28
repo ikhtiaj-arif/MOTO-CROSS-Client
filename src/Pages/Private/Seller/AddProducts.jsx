@@ -60,6 +60,7 @@ console.log(userInfo);
         method: "POST",
         headers: {
           "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem('motocross-token')}`
         },
         body: JSON.stringify(product),
       })

@@ -21,7 +21,8 @@ const MyProducts = () => {
         fetch(`http://localhost:5000/bike/${id}`, {
           method: "PUT",
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            authorization: `bearer ${localStorage.getItem('motocross-token')}`
           },
           body: JSON.stringify(data)
         })
@@ -38,7 +39,8 @@ const MyProducts = () => {
         fetch(`http://localhost:5000/bike/${id}`, {
           method: "PUT",
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            authorization: `bearer ${localStorage.getItem('motocross-token')}`
           },
           body: JSON.stringify(data)
         })

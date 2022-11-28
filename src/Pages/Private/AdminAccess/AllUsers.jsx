@@ -36,7 +36,8 @@ const AllUsers = () => {
   
   const handleDelete =(user) => {
     fetch(`http://localhost:5000/user/${user._id}`,{
-      method: "DELETE"
+      method: "DELETE",
+      headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
      
     })
     .then(res => res.json())

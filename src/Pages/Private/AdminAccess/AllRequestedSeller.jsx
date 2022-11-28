@@ -18,7 +18,9 @@ const AllRequestedSeller = () => {
     const { data: allSellerReq = [], refetch } = useQuery({
       queryKey: ["seller"],
       queryFn: async () => {
-        const res = await fetch(url);
+        const res = await fetch(url,{
+          headers:{  authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+        });
         const data = await res.json();
         return data;
       },
@@ -46,7 +48,8 @@ const AllRequestedSeller = () => {
    
       const handleDelete =(seller) => {
         fetch(`http://localhost:5000/user/${seller._id}`,{
-          method: "DELETE"
+          method: "DELETE",
+          headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
          
         })
         .then(res => res.json())

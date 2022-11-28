@@ -4,7 +4,9 @@
 // get user 
 export const getUserInfo = async (email) => {
   const url = `http://localhost:5000/users/${email}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+  });
   const data = await res.json();
  
   return data;
@@ -14,7 +16,9 @@ export const getUserInfo = async (email) => {
 // get user role
 export const getRole = async (email) => {
   const url = `http://localhost:5000/users/${email}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+  });
   const data = await res.json();
   const userRole = data?.role;
   return userRole;
@@ -24,7 +28,9 @@ export const getRole = async (email) => {
 
 export const isSellerVerifyed = async (email) => {
   const url = `http://localhost:5000/users/${email}`;
-  const res = await fetch(url);
+  const res = await fetch(url,{
+    headers: { authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+  });
   const data = await res.json();
   const isVerified = data?.isSellerVerified;
   return isVerified;

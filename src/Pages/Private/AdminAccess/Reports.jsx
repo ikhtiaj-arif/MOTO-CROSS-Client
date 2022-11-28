@@ -38,7 +38,8 @@ const Reports = () => {
      
             
             fetch(`http://localhost:5000/reports/${id}`,{
-                method: "DELETE"
+                method: "DELETE",
+                headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
                
               })
               .then(res => res.json())
@@ -54,7 +55,8 @@ const Reports = () => {
         
    const handleDelete = (id) => {
      fetch(`http://localhost:5000/bike/${id}`,{
-        method: "DELETE"
+        method: "DELETE",
+        headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
       })
       .then(res => res.json())
       .then(data => {

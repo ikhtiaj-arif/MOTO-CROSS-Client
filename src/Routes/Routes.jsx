@@ -13,6 +13,7 @@ import MyBookings from "../Pages/Private/MyBookings";
 import Payment from "../Pages/Private/Payment";
 import AddProducts from "../Pages/Private/Seller/AddProducts";
 import MyProducts from "../Pages/Private/Seller/MyProducts";
+import ErrorPage from "../Pages/Shared/ErrorPage";
 import Login from "../Pages/Shared/Login";
 import SignUp from "../Pages/Shared/SignUp";
 import PrivateRoute from "./PrivateRoute";
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main/>,
-        // errorElement: ,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: '/',
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><Dashboard/></PrivateRoute>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: '/dashboard/myBookings',

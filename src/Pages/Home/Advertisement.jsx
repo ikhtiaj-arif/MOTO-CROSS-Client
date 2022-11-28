@@ -9,7 +9,9 @@ const Advertisement = () => {
     const { data: bikes = [], isLoading, refetch } = useQuery({
         queryKey: ["advertised"],
         queryFn: async () => {
-          const res = await fetch(url);
+          const res = await fetch(url,{
+            headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+          });
           const data = await res.json();
           return data;
         },
@@ -21,7 +23,7 @@ const Advertisement = () => {
             <div className="flex items-strech justify-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8">
                
            {
-            bikes.map(bike => <>
+            bikes.map(bike => <div key={bike._id}>
                      <div className="items-strech justify-between bg-gray-50 py-6 px-6 md:py-12 lg:px-12 md:w-8/12 lg:w-7/12 xl:w-8/12 2xl:w-9/12">
                     <div className="flex flex-col justify-center md:w-1/2">
                         <h1 className="text-3xl lg:text-4xl font-semibold text-gray-800">Best Deal</h1>
@@ -37,7 +39,7 @@ const Advertisement = () => {
                         <img src={bike.picture} alt="" />
                     </div>
                 </div>
-            </>)
+            </div>)
            }
                 
             </div>
