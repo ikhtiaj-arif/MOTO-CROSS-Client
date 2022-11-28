@@ -1,72 +1,31 @@
 [
     {
-      "title": "TOURIST",
-      "Bike_Name": "Yemaha fsx",
-      "price": "$1,965.58",
-      "org_price": "$2,125.63",
-      "picture": "https://motorbikewriter.com/wp-content/uploads/2020/10/2020-BMW-R1250GS-Side-View-Studio-Shot.jpg",
-      "used": 40,
-      "seller_name": "Allison ",
-      "location": "OMATOM",
-      "email": "allisonwalter@omatom.com",
-      "phone": "+1 (930) 405-2504",
-      "address": "Puerto Rico",
-      "isVerified": "verified"
+      "title": "React vs. Angular vs. Vue",
+      "text": "Angular has a steep learning curve, considering it is a complete solution, and mastering Angular requires you to learn associated concepts like TypeScript and MVC. Even though it takes time to learn Angular, the investment pays dividends in terms of understanding how the front end works.React offers a Getting Started guide that should help one set up React in about an hour. The documentation is thorough and complete, with solutions to common issues already present on Stack Overflow. React is not a complete framework and advanced features require the use of third-party libraries. This makes the learning curve of the core framework not so steep but depends on the path you take with additional functionality. However, learning to use React does not necessarily mean that you are using the best practices.Vue provides higher customizability and hence is easier to learn than Angular or React. Further, Vue has an overlap with Angular and React with respect to their functionality like the use of components. Hence, the transition to Vue from either of the two is an easy option. However, simplicity and flexibility of Vue is a double-edged sword — it allows poor code, making it difficult to debug and test.",
+  
+      "topic": "JS Framework"
+ 
     },
     {
-      "title": "TOURIST",
-      "Bike_Name": "Yemaha fsx",
-      "price": "$1,763.16",
-      "org_price": "$2,722.62",
-      "picture": "https://www.bennetts.co.uk/-/media/bikesocial/2021-february-images/top-10-ten-touring-bikes-2021/top-10-ten-touring-bikes-2021_02.ashx?h=493&la=en&w=740&hash=9FA977EF262F33510C216BFE114AAE9C2BDAF04E",
-      "used": 38,
-      "seller_name": "Colette ",
-      "location": "EXOVENT",
-      "email": "colettewalter@exovent.com",
-      "phone": "+1 (976) 536-2843",
-      "address": "Hawaii",
-      "isVerified": "verified"
+      "title": "What is a unit test? Why should we write unit tests?",
+      "text": "Unit testing is a software development process in which the smallest testable parts of an application, called units, are individually and independently scrutinized for proper operation. This testing methodology is done during the development process by the software developers and sometimes QA staff.  The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.",
+  
+      "topic": "Software Testing"
+ 
     },
     {
-      "title": "SCRAMBLER",
-      "Bike_Name": "Yemaha fsx",
-      "price": "$1,763.16",
-      "org_price": "$2,722.62",
-      "picture": "https://www.bennetts.co.uk/-/media/bikesocial/2021-february-images/top-10-ten-touring-bikes-2021/top-10-ten-touring-bikes-2021_02.ashx?h=493&la=en&w=740&hash=9FA977EF262F33510C216BFE114AAE9C2BDAF04E",
-      "used": 38,
-      "seller_name": "Colette ",
-      "location": "EXOVENT",
-      "email": "colettewalter@exovent.com",
-      "phone": "+1 (976) 536-2843",
-      "address": "Hawaii",
-      "isVerified": "verified"
+      "title": "What are the different ways to manage a state in a React application",
+      "text": "Not only are there are a lot of different kinds of state, but there often dozens of ways of managing each kind.There are four main types of state you need to properly manage in your React apps:  1. Local state 2.Global State 3.Server state 4. URL state. Local state is perhaps the easiest kind of state to manage in React, considering there are so many tools built into the core React library for managing it useReducer is another option that can be used for either local or global state. It is similar in many ways to useState under the hood, although instead of just an initial state it accepts a reducer.The benefit of useReducer is that it provides a built-in way to perform a number of different state operations with the help of the reducer function, which makes it more dynamic overall than useState.",
+  
+      "topic": "React.JS"
+ 
     },
     {
-      "title": "CRUISER",
-      "Bike_Name": "Yemaha fsx",
-      "price": "$1,763.16",
-      "org_price": "$2,722.62",
-      "picture": "https://www.bennetts.co.uk/-/media/bikesocial/2021-february-images/top-10-ten-touring-bikes-2021/top-10-ten-touring-bikes-2021_02.ashx?h=493&la=en&w=740&hash=9FA977EF262F33510C216BFE114AAE9C2BDAF04E",
-      "used": 38,
-      "seller_name": "Colette ",
-      "location": "EXOVENT",
-      "email": "colettewalter@exovent.com",
-      "phone": "+1 (976) 536-2843",
-      "address": "Hawaii",
-      "isVerified": "verified"
-    },
-    {
-      "title": "SPORTS",
-      "Bike_Name": "Yemaha fsx",
-      "price": "$1,810.40",
-      "org_price": "$3,523.00",
-      "picture": "https://i0.wp.com/revelatoralf.com/wp-content/uploads/2021/12/Screenshot-2021-12-06-at-21.30.40.png?resize=748%2C561&ssl=1",
-      "used": 36,
-      "seller_name": "Leila ",
-      "location": "DELPHIDE",
-      "email": "leilawalter@delphide.com",
-      "phone": "+1 (992) 503-3706",
-      "address": "American Samoa",
-      "isVerified": "verified"
+      "title": "How does prototypical inheritance work",
+      "text": "The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object.getPrototypeOf and Object",
+  
+      "topic": "JAVASCRIPT"
+ 
     }
+    
   ]

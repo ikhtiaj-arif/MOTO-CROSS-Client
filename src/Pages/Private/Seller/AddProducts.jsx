@@ -20,7 +20,9 @@ const AddProducts = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["Category"],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url,{
+        headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+      });
       const data = await res.json();
       return data;
     },
@@ -54,8 +56,10 @@ console.log(userInfo);
         isSellerVerified: userInfo.isSellerVerified,
         condition,
         phone,
+        status: "available"
       };
-
+      console.log(product);
+      
       fetch("http://localhost:5000/bike", {
         method: "POST",
         headers: {
@@ -183,7 +187,7 @@ console.log(userInfo);
                 Chose The Category
               </option>
               {categories.map((e) => (
-                <option key={e} value={e.title}>
+                <option key={e._id} value={e.title}>
                   {e.title}
                 </option>
               ))}

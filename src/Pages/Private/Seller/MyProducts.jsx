@@ -9,7 +9,9 @@ const MyProducts = () => {
     const { data: bikes = [], isLoading, refetch } = useQuery({
         queryKey: ["Category"],
         queryFn: async () => {
-          const res = await fetch(url);
+          const res = await fetch(url,{
+            headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+          });
           const data = await res.json();
           return data;
         },
@@ -77,7 +79,7 @@ if(isLoading){
             </thead>
             <tbody>
               {bikes.map((bike, i) => (
-                <tr >
+                <tr key={i}>
                   <th>
                     <label>
                       <input type="checkbox" className="checkbox" />

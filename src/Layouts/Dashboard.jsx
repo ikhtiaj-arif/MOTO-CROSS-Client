@@ -15,7 +15,7 @@ const Dashboard = () => {
       // console.log(data);
       setRole(data);
       setLoading(false);
-    });
+    }).finally(setLoading(false));
   }, [user?.email]);
 
   if (loading) {
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
           <ul className="menu p-4 w-80  text-base-content">
             <li>
-              <Link to="/dashboard/myBookings">My Bookings</Link>
+              <Link to="/dashboard">My Bookings</Link>
             </li>
             {role === "admin" && (
               <>

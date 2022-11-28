@@ -21,7 +21,9 @@ const Reports = () => {
   const { data: reports = [], refetch, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        headers: {authorization: `bearer ${localStorage.getItem('motocross-token')}`}
+      });
       const data = await res.json();
       console.log(data);
       return data;

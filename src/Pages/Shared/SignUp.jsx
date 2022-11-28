@@ -54,7 +54,8 @@ const SignUp = () => {
                 location: location,
                 image: imageUrl,
                 role: role,
-                email: user?.email
+                email: user?.email,
+                displayName: user.displayName
               }
                 setAuthToken(userData);
                 toast.success("user created!");

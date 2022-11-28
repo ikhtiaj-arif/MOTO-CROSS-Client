@@ -107,14 +107,14 @@ const AllSeller = () => {
                 <td>Purple</td>
                 <th>
                   
-                  {seller?.isSellerVerified !== "verified" && (
+                  {seller?.isSellerVerified !== "verified" ?<> (
                     <button
                       onClick={() => VerifySeller(seller._id)}
                       className="btn btn-info btn-xs"
                     >
                       Verify Seller
                     </button>
-                  )}
+                  )</>:<>{seller?.isSellerVerified}</>}
                 </th>
                 <th>
                   
