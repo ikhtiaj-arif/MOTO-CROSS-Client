@@ -10,7 +10,7 @@ const AllSeller = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-nine-black.vercel.app/seller`;
+  const url = `http://localhost:5000/seller`;
   const { data: allSeller = [], refetch } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
@@ -35,7 +35,7 @@ const AllSeller = () => {
   };
 
   const handleDelete = (seller) => {
-    fetch(`https://server-nine-black.vercel.app/user/${seller._id}`, {
+    fetch(`http://localhost:5000/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

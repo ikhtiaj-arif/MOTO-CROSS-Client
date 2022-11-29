@@ -13,7 +13,7 @@ const Reports = () => {
   // axios to load product
 
   // get reports
-  const url = `https://server-nine-black.vercel.app/reports`;
+  const url = `http://localhost:5000/reports`;
 
   const {
     data: reports = [],
@@ -34,10 +34,10 @@ const Reports = () => {
   });
 
   //   get reported products
-  // const url2 = `https://server-nine-black.vercel.app/bike/${pp}`;
+  // const url2 = `http://localhost:5000/bike/${pp}`;
 
   const handleDeleteReport = (id) => {
-    fetch(`https://server-nine-black.vercel.app/reports/${id}`, {
+    fetch(`http://localhost:5000/reports/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -54,7 +54,7 @@ const Reports = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`https://server-nine-black.vercel.app/bike/${id}`, {
+    fetch(`http://localhost:5000/bike/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

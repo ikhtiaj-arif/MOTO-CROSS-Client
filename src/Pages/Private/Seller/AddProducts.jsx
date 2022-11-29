@@ -16,7 +16,7 @@ const AddProducts = () => {
 
   // console.log(userInfo);
 
-  const url = `https://server-nine-black.vercel.app/categories`;
+  const url = `http://localhost:5000/categories`;
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["Category"],
     queryFn: async () => {
@@ -62,7 +62,7 @@ const AddProducts = () => {
       };
       console.log(product);
 
-      fetch("https://server-nine-black.vercel.app/bike", {
+      fetch("http://localhost:5000/bike", {
         method: "POST",
         headers: {
           "content-type": "application/json",

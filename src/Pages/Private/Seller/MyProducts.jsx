@@ -5,7 +5,7 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  const url = `https://server-nine-black.vercel.app/bikes?email=${user.email}`;
+  const url = `http://localhost:5000/bikes?email=${user.email}`;
   const {
     data: bikes = [],
     isLoading,
@@ -26,7 +26,7 @@ const MyProducts = () => {
   const handleAdvertise = (id) => {
     const data = { isAdvertised: "advertise" };
 
-    fetch(`https://server-nine-black.vercel.app/bike/${id}`, {
+    fetch(`http://localhost:5000/bike/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -44,7 +44,7 @@ const MyProducts = () => {
   };
   const calcelAdvertise = (id) => {
     const data = { isAdvertised: "cancel" };
-    fetch(`https://server-nine-black.vercel.app/bike/${id}`, {
+    fetch(`http://localhost:5000/bike/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -10,7 +10,7 @@ const AllUsers = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-nine-black.vercel.app/users`;
+  const url = `http://localhost:5000/users`;
   const {
     data: allUsers = [],
     refetch,
@@ -39,7 +39,7 @@ const AllUsers = () => {
   };
 
   const handleDelete = (user) => {
-    fetch(`https://server-nine-black.vercel.app/user/${user._id}`, {
+    fetch(`http://localhost:5000/user/${user._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

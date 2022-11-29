@@ -11,7 +11,7 @@ const MyBookings = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-nine-black.vercel.app/bookings?email=${user?.email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -31,7 +31,7 @@ const MyBookings = () => {
   });
 
   const handleBookingDelete = (id) => {
-    fetch(`https://server-nine-black.vercel.app/bookings/${id}`, {
+    fetch(`http://localhost:5000/bookings/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

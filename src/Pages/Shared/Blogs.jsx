@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const Blogs = () => {
-  const [blogs, setBlogs] = useState([])
- useEffect(()=>{
-  axios.get('https://server-nine-black.vercel.app/blogs')
-  .then(res => {
-    setBlogs(res.data)
-  })
-  .catch(e => console.log(e))
- },[])
-
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/blogs")
+      .then((res) => {
+        setBlogs(res.data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   return (
     <div>

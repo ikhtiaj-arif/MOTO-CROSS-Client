@@ -16,6 +16,7 @@ import Blogs from "../Pages/Shared/Blogs";
 import ErrorPage from "../Pages/Shared/ErrorPage";
 import Login from "../Pages/Shared/Login";
 import SignUp from "../Pages/Shared/SignUp";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -44,9 +45,7 @@ const router = createBrowserRouter([
         path: "/categories/:title",
         element: <BikesByTitle />,
         loader: ({ params }) =>
-          fetch(
-            `https://server-nine-black.vercel.app/categories/${params.title}`
-          ),
+          fetch(`http://localhost:5000/categories/${params.title}`),
       },
       {
         path: "/bike/:id",
@@ -56,7 +55,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://server-nine-black.vercel.app/bike/${params.id}`),
+          fetch(`http://localhost:5000/bike/${params.id}`),
       },
     ],
   },
@@ -77,31 +76,55 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`https://server-nine-black.vercel.app/bookings/${params.id}`),
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
       {
         path: "/dashboard/allUsers",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allSeller",
-        element: <AllSeller />,
+        element: (
+          <AdminRoute>
+            <AllSeller />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allSellerReq",
-        element: <AllRequestedSeller />,
-      },
-      {
-        path: "/dashboard/addProduct",
-        element: <AddProducts />,
-      },
-      {
-        path: "/dashboard/myProducts",
-        element: <MyProducts />,
+        element: (
+          <AdminRoute>
+            <AllRequestedSeller />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/reports",
-        element: <Reports />,
+        element: (
+          <AdminRoute>
+            <Reports />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/addProduct",
+        element: (
+          <PrivateRoute>
+            <AddProducts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myProducts",
+        element: (
+          <PrivateRoute>
+            <MyProducts />
+          </PrivateRoute>
+        ),
       },
     ],
   },

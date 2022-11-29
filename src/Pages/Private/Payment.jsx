@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const bookingInfo = useLoaderData();
 
-  const url = `https://server-nine-black.vercel.app/bike/${bookingInfo.productId}`;
+  const url = `http://localhost:5000/bike/${bookingInfo.productId}`;
 
   const { data: bikeInfo = [], isLoading } = useQuery({
     queryKey: ["bike"],

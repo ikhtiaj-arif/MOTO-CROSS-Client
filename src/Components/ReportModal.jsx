@@ -19,7 +19,7 @@ const ReportModal = ({ bikeInfo }) => {
       productId,
       userEmail,
     };
-    fetch(`https://server-nine-black.vercel.app/reports`, {
+    fetch(`http://localhost:5000/reports`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
