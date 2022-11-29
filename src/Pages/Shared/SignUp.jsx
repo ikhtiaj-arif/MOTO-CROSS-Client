@@ -90,8 +90,8 @@ const SignUp = () => {
     <div className="flex justify-center items-center pt-8">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Create a new account</p>
+          <h1 className="my-3 text-4xl font-bold text-accent">Sign Up</h1>
+          <p className="text-sm text-gray-500">Create a new account</p>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -110,7 +110,7 @@ const SignUp = () => {
                 id="name"
                 required
                 placeholder="Enter Your Name Here"
-                className="input input-bordered input-primary w-full"
+                className="input input-bordered hover:input-accent w-full"
                 data-temp-mail-org="0"
               />
             </div>
@@ -123,7 +123,7 @@ const SignUp = () => {
                 id="image"
                 name="image"
                 accept="image/*"
-                className="file-input file-input-bordered input-primary w-full"
+                className="file-input file-input-bordered hover:input-accent w-full"
                 // required
               />
             </div>
@@ -137,7 +137,7 @@ const SignUp = () => {
                 name="email"
                 id="email"
                 placeholder="Enter Your Email Here"
-                className="input input-bordered input-primary w-full"
+                className="input input-bordered hover:input-accent w-full"
                 data-temp-mail-org="0"
               />
             </div>
@@ -153,27 +153,27 @@ const SignUp = () => {
                 id="password"
                 // required
                 placeholder="*******"
-                className="input input-bordered input-primary w-full"
+                className="input input-bordered hover:input-accent w-full"
               />
             </div>
           </div>
 
           <div className="divider ">OR</div>
           <div className="">
-            <div className="form-control">
+            <div className="form-control mb-2">
               <label className="cursor-pointer label justify-center">
                 <span className="label-text font-medium">Request To Become A Seller</span>
                 <input
                   type="checkbox"
                   onChange={()=>setChecked(!checked)}
-                  className="checkbox checkbox-primary ml-2"
+                  className="checkbox checkbox-info ml-2"
                 />
               </label>
             </div>
 
             <select
               name="location"
-              className="select select-bordered w-full max-w-xs"
+              className="select select-bordered w-full max-w-xs hover:select-accent"
             >
               <option disabled selected>
                 Chose Your Location
@@ -193,7 +193,7 @@ const SignUp = () => {
             <div>
               <button
                 type="submit"
-                className="w-full px-8 btn btn-outline btn-primary"
+                className="w-full px-8 btn btn-outline btn-accent"
               >
                 Sign up
               </button>
@@ -241,7 +241,7 @@ const SignUp = () => {
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Already have an Account?{" "}
-          <Link to="/login" className="hover:underline text-gray-600">
+          <Link to="/login" className="hover:underline text-gray-600 hover:text-accent">
            LogIn
           </Link>
         </p>

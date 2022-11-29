@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
+import {FaOutdent} from "react-icons/fa";
 
 const Nav = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -21,6 +22,24 @@ const Nav = () => {
       </li>
       <li>
         <Link to='/dashboard'>Dashboard</Link>
+      </li>
+      
+      <li>
+      {
+       user?.uid ?
+      <>
+       <Link onClick={handleLogout} className="btn btn-accent">
+          LogOut
+        </Link>
+        </>
+        : 
+        <>
+        
+         <Link to='/login' className="btn btn-accent">
+          Log In
+        </Link>
+        </> 
+      }
       </li>
       
     </>
@@ -61,20 +80,13 @@ const Nav = () => {
         </ul>
       </div>
       <div className="navbar-end">
-       {
-       user?.uid ?
-      <>
-       <Link onClick={handleLogout} className="btn btn-accent">
-          LogOut
-        </Link>
-        </>
-        : 
-        <>
-         <Link to='/login' className="btn btn-accent">
-          Log In
-        </Link>
-        </> 
-      }
+      <label
+        htmlFor="dashboard-drawer"
+        className=" drawer-button md:hidden"
+      >
+       <FaOutdent className="w-4 h-4 mr-3"/>
+      </label>
+      
       </div>
     </div>
   );

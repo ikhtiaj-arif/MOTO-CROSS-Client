@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { getRole } from "../Api/User";
 import { AuthContext } from "../Context/UserContext";
 import Nav from "../Pages/Shared/Nav";
-import { FaInstalod, FaBell, FaCalendarPlus,FaUsers, FaUserClock, FaUserCheck,FaRegEdit} from "react-icons/fa";
+import { FaInstalod, FaBell, FaCalendarPlus,FaUsers, FaUserClock, FaUserCheck,FaRegEdit, FaOutdent} from "react-icons/fa";
 
 
 const Dashboard = () => {
@@ -29,13 +29,6 @@ const Dashboard = () => {
   return (
     <div>
       <Nav></Nav>
-
-      <label
-        htmlFor="dashboard-drawer"
-        className="btn btn-primary drawer-button md:hidden"
-      >
-        Open drawer
-      </label>
       <div className="drawer drawer-mobile mt-20">
         <input
           id="dashboard-drawer"
@@ -78,7 +71,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                   <FaUsers/>
+                   <FaUsers className="w-6 h-4"/>
                     <span>ALL USERS</span>
                   </Link>
                 </li>
@@ -88,7 +81,8 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <FaUserClock/>
+                    <FaUserClock className="w-6 h-4"/>
+                    
                     <span>ALL SELLER REQUESTS</span>
                   </Link>
                 </li>
@@ -98,7 +92,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <FaUserCheck/>
+                    <FaUserCheck className="w-6 h-4"/>
                     <span>ALL SELLER</span>
                   </Link>
                 </li>
@@ -108,7 +102,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <FaBell/>
+                    <FaBell className="w-6 h-4"/>
                     <span>REPORTED ITEMS</span>
                   </Link>
                 </li>
@@ -122,7 +116,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                <FaInstalod/>
+                <FaInstalod className="w-6 h-4"/>
                     <span>MY PRODUCTS</span>
                   </Link>
                 </li>
@@ -132,7 +126,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                  <FaCalendarPlus/>
+                  <FaCalendarPlus className="w-6 h-4"/>
                     <span>ADD A PRODUCT</span>
                   </Link>
                 </li>
@@ -142,7 +136,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                 <FaRegEdit/>
+                 <FaRegEdit className="w-6 h-4"/>
                     <span>Orders</span>
                   </Link>
                 </li>

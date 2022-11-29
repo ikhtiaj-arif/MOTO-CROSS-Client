@@ -11,10 +11,10 @@ const CategoryCard = ({ category }) => {
       <div className="card-body text-center">
         <h2 className="text-2xl  font-bold ">{title}</h2>
 
-        <div className=" py-3  w-3/4 mx-auto flex justify-between items-center text-orange-600">
-          <Link to={`/categories/${title}`} className="btn btn-outline btn-accent ">
+        <div className=" py-6  w-full mx-auto">
+          <Link to={`/categories/${title}`} className="btn btn-outline px-12 btn-accent ">
             {" "}
-            see available bikes
+            see available {title} bikes
           </Link>
         </div>
       </div>

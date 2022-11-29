@@ -40,14 +40,14 @@ const Login = () => {
       <div className="flex justify-center items-center pt-8">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Log In</h1>
-          <p className="text-sm text-gray-400">Continue With Your Account</p>
+          <h1 className="my-3 text-4xl font-bold text-accent">Log In</h1>
+          <p className="text-sm ">Continue With Your Account</p>
         </div>
         <form
           onSubmit={handleSubmit}
           noValidate=""
           action=""
-          className="space-y-12 ng-untouched ng-pristine ng-valid"
+          className="space-y-12"
         >
           <div className="space-y-4">
             
@@ -61,12 +61,12 @@ const Login = () => {
                 name="email"
                 id="email"
                 placeholder="Enter Your Email Here"
-                className="input input-bordered input-primary w-full"
-                data-temp-mail-org="0"
+                className="input input-bordered hover:input-accent w-full"
+               
               />
             </div>
             <div>
-              <div className="flex justify-between mb-2">
+              <div className="flex justify-between">
                 <label htmlFor="password" className="text-sm">
                   Password
                 </label>
@@ -77,30 +77,18 @@ const Login = () => {
                 id="password"
                 // required
                 placeholder="*******"
-                className="input input-bordered input-primary w-full"
+                className="input input-bordered hover:input-accent w-full"
               />
             </div>
           </div>
-   
-
-          <div className="">
             <div className="form-control">
-              <label className="cursor-pointer label">
-                <span className="label-text">Request To Become A Seller</span>
-                <input
-                  type="checkbox"
-                  checked
-                  className="checkbox checkbox-primary"
-                />
-              </label>
-            </div>
-
+              
             <div>
               <button
                 type="submit"
-                className="w-full px-8 btn btn-outline btn-primary"
+                className="w-full px-8 btn btn-outline btn-accent"
               >
-                Sign up
+                Log In
               </button>
             </div>
           </div>
@@ -146,8 +134,8 @@ const Login = () => {
           </button>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
-          Don't have an account yet?{" "}
-          <Link to="/signup" className="hover:underline text-gray-600">
+          Don't have an account?{" "}
+          <Link to="/signup" className="hover:underline hover:text-accent text-gray-600">
             Sign In
           </Link>
         </p>

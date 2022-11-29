@@ -26,7 +26,7 @@ fetch(`http://localhost:5000/bike/${report.productId}`, {
   return (
     <div className="card card-side bg-base-100 shadow-xl">
       <figure>
-        <img src={bike.picture} className="w-2/4" alt="Movie" />
+        <img src={bike.picture} className="md:w-2/4" alt="Movie" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{bike.Bike_Name}</h2>
