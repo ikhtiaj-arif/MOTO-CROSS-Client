@@ -18,7 +18,7 @@ const BookTable = ({booking, setDeleteDoc}) => {
     .then((res) => res.json())
     .then((data) => {
      setBike(data)
-       console.log(data);
+    //    console.log(data);
       
     });
   },[booking.productId])

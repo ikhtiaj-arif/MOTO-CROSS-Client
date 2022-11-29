@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { getRole } from "../Api/User";
 import { AuthContext } from "../Context/UserContext";
 import Nav from "../Pages/Shared/Nav";
-import { FaInstalod, FaBell, FaCalendarPlus} from "react-icons/fa";
+import { FaInstalod, FaBell, FaCalendarPlus,FaUsers, FaUserClock, FaUserCheck,FaRegEdit} from "react-icons/fa";
 
 
 const Dashboard = () => {
@@ -78,13 +78,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      className="w-5 h-5 fill-current dark:text-gray-400"
-                    >
-                      <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-                    </svg>
+                   <FaUsers/>
                     <span>ALL USERS</span>
                   </Link>
                 </li>
@@ -94,13 +88,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      className="w-5 h-5 fill-current dark:text-gray-400"
-                    >
-                      <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-                    </svg>
+                    <FaUserClock/>
                     <span>ALL SELLER REQUESTS</span>
                   </Link>
                 </li>
@@ -110,13 +98,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      className="w-5 h-5 fill-current dark:text-gray-400"
-                    >
-                      <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-                    </svg>
+                    <FaUserCheck/>
                     <span>ALL SELLER</span>
                   </Link>
                 </li>
@@ -126,13 +108,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      className="w-5 h-5 fill-current dark:text-gray-400"
-                    >
-                      <path d="M453.122,79.012a128,128,0,0,0-181.087.068l-15.511,15.7L241.142,79.114l-.1-.1a128,128,0,0,0-181.02,0l-6.91,6.91a128,128,0,0,0,0,181.019L235.485,449.314l20.595,21.578.491-.492.533.533L276.4,450.574,460.032,266.94a128.147,128.147,0,0,0,0-181.019ZM437.4,244.313,256.571,425.146,75.738,244.313a96,96,0,0,1,0-135.764l6.911-6.91a96,96,0,0,1,135.713-.051l38.093,38.787,38.274-38.736a96,96,0,0,1,135.765,0l6.91,6.909A96.11,96.11,0,0,1,437.4,244.313Z"></path>
-                    </svg>
+                    <FaBell/>
                     <span>REPORTED ITEMS</span>
                   </Link>
                 </li>
@@ -166,7 +142,7 @@ const Dashboard = () => {
                     href="#"
                     className="flex items-center p-2 space-x-3 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300"
                   >
-                 <FaBell/>
+                 <FaRegEdit/>
                     <span>Orders</span>
                   </Link>
                 </li>

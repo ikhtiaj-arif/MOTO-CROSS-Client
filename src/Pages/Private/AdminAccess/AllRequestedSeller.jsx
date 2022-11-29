@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { SetSellerInfo } from "../../../Api/User";
 import toast from "react-hot-toast";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
+import { FaTrashAlt } from "react-icons/fa";
+
 
 const AllRequestedSeller = () => {
   const [deleteDoc, setDeleteDoc] = useState(null);
@@ -66,25 +68,17 @@ const AllRequestedSeller = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
               <th></th>
+              <th>Name</th>
+              <th>location</th>
+              <th>Pending Request</th>
+              <th>Delete </th>
             </tr>
           </thead>
           <tbody>
             {allSellerReq.map((seller, i) => (
               <tr key={i}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+              
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -95,20 +89,15 @@ const AllRequestedSeller = () => {
                         />
                       </div>
                     </div>
-                    <div>
-                      <div className="font-bold">{seller.email}</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
                   </div>
                 </td>
                 <td>
-                  {seller._id}
+                <div className="font-bold">{seller.displayName}</div>
+                      <div className="text-sm opacity-50">{seller.email}</div>
                   <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
+                  
                 </td>
-                <td>Purple</td>
+                <td>{seller.location}</td>
                 <th>
                   {seller?.isSellerVerified !== "verified" && (
                     <>
@@ -128,7 +117,7 @@ const AllRequestedSeller = () => {
                     </>
                   )}
                 </th>
-                <th></th>
+                
                 <th>
                   <label
                     htmlFor="confirmation-modal"

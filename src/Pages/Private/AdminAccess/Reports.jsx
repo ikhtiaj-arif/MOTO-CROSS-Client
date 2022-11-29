@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import ConfirmationModal from "../../../Components/ConfirmationModal";
+import ReportCard from "./ReportCard";
 
 const Reports = () => {
   const [deleteDoc, setDeleteDoc] = useState(null);
@@ -68,15 +69,21 @@ const Reports = () => {
   };
 
   return (
-    <div>
-      <div className="overflow-x-auto w-full">
+    <div className="">
+      {reports.map((report) => (
+        <ReportCard
+          key={report._id}
+          report={report}
+          setDeleteDoc={setDeleteDoc}
+          handleDeleteReport={handleDeleteReport}
+        ></ReportCard>
+      ))}
+      {/* <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
             <tr>
               <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
+             
               </th>
               <th>Name</th>
               <th>Job</th>
@@ -87,11 +94,7 @@ const Reports = () => {
           <tbody>
             {reports.map((report, i) => (
               <tr key={i}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+              
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -139,14 +142,15 @@ const Reports = () => {
             ))}
           </tbody>
         </table>
-        {deleteDoc && (
-          <ConfirmationModal
-            handleDeleteDoc={handleDelete}
-            deleteDoc={deleteDoc}
-            cancel={closeModal}
-          ></ConfirmationModal>
-        )}
-      </div>
+     
+      </div> */}
+      {deleteDoc && (
+        <ConfirmationModal
+          handleDeleteDoc={handleDelete}
+          deleteDoc={deleteDoc}
+          cancel={closeModal}
+        ></ConfirmationModal>
+      )}
     </div>
   );
 };
