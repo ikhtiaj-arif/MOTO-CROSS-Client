@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
+
   const url = `http://localhost:5000/bikes?email=${user.email}`;
   const {
     data: bikes = [],
@@ -22,6 +23,8 @@ const MyProducts = () => {
       return data;
     },
   });
+
+
 
   const handleAdvertise = (id) => {
     const data = { isAdvertised: "advertise" };
@@ -43,7 +46,7 @@ const MyProducts = () => {
       });
   };
   const calcelAdvertise = (id) => {
-    const data = { isAdvertised: "cancel" };
+    const data = { isAdvertised: null };
     fetch(`http://localhost:5000/bike/${id}`, {
       method: "PUT",
       headers: {
@@ -61,6 +64,7 @@ const MyProducts = () => {
       });
   };
 
+  console.log(bikes);
   if (isLoading) {
     return <>spinner</>;
   }
@@ -71,32 +75,25 @@ const MyProducts = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              
+              <th>Bike</th>
               <th></th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Advertise</th>
             </tr>
           </thead>
           <tbody>
             {bikes.map((bike, i) => (
               <tr key={i}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+               
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
+                      <div className="mask w-14 h-12">
                         <img
                           src={bike.picture}
-                          alt="Avatar Tailwind CSS Component"
+                          alt=""
                         />
                       </div>
                     </div>
@@ -106,16 +103,18 @@ const MyProducts = () => {
                     </div>
                   </div>
                 </td>
+                <td></td>
                 <td>
                   {}
                   <br />
                   <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
+                   {bike.price}
                   </span>
                 </td>
-                <td>Purple</td>
-                <th>
-                  {bike.status !== "sold" && (
+                <td> {bike.status}</td>
+                <td>
+                  
+                {bike.status !== "sold" && (
                     <>
                       {" "}
                       {bike.status === "available" &&
@@ -136,8 +135,9 @@ const MyProducts = () => {
                       )}
                     </>
                   )}
-
-                  {bike.status}
+                </td>
+                <th>
+                  
                 </th>
               </tr>
             ))}

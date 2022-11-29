@@ -38,7 +38,7 @@ const BookModal = ({ bikeInfo }) => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("booking confirmed!");
-          navigate("/dashboard/myBookings");
+          navigate("/dashboard");
         }
       });
   };

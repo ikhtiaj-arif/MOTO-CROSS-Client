@@ -2,7 +2,7 @@ import React from 'react';
 
 const Info = () => {
     return (
-        <section className="p-20 my-24 rounded dark:bg-gray-800 dark:text-gray-100">
+        <section className="p-20 rounded dark:bg-gray-800 dark:text-gray-100">
         <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
             <div className="flex p-8 space-x- rounded-lg md:space-x-6 border-2 border-accent dark:text-gray-100">
                 <div className="flex justify-center p-4 align-middle rounded-lg sm:p-4 bg-accent">
