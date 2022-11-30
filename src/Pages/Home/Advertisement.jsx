@@ -4,7 +4,7 @@ import AddvertiseCard from "./AddvertiseCard";
 import Spinner from "../../Components/Spinner";
 
 const Advertisement = () => {
-  const url = `http://localhost:5000/advertiseBike`;
+  const url = `https://server-angon777.vercel.app/advertiseBike`;
   const {
     data: bikes = [],
     isLoading,
@@ -18,7 +18,7 @@ const Advertisement = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });

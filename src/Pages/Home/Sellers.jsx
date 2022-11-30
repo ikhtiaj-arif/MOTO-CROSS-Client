@@ -8,7 +8,7 @@ const Sellers = () => {
   const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/seller")
+    fetch("https://server-angon777.vercel.app/seller")
       .then((res) => res.json())
       .then((data) => setSellers(data));
     setLoading(false);

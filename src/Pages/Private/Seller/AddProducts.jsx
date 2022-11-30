@@ -18,7 +18,7 @@ const AddProducts = () => {
 
   // console.log(userInfo);
 
-  const url = `http://localhost:5000/categories`;
+  const url = `https://server-angon777.vercel.app/categories`;
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["Category"],
     queryFn: async () => {
@@ -65,7 +65,7 @@ const AddProducts = () => {
       };
       console.log(product);
 
-      fetch("http://localhost:5000/bike", {
+      fetch("https://server-angon777.vercel.app/bike", {
         method: "POST",
         headers: {
           "content-type": "application/json",

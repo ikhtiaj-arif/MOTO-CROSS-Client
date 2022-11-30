@@ -12,7 +12,7 @@ const AllRequestedSeller = () => {
     setDeleteDoc(null);
   };
 
-  const url = `http://localhost:5000/sellerRequested`;
+  const url = `https://server-angon777.vercel.app/sellerRequested`;
   const {
     data: allSellerReq = [],
     isLoading,
@@ -50,7 +50,7 @@ const AllRequestedSeller = () => {
   };
 
   const handleDelete = (seller) => {
-    fetch(`http://localhost:5000/user/${seller._id}`, {
+    fetch(`https://server-angon777.vercel.app/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -58,7 +58,7 @@ const AllRequestedSeller = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.deletedCount > 0) {
           toast.error(`${seller.name} Successfully Deleted!`);
           refetch();

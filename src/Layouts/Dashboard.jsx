@@ -38,7 +38,7 @@ const Dashboard = () => {
       </div>
     );
   }
-console.log(user);
+// console.log(user);
   return (
     <div>
       <Nav></Nav>

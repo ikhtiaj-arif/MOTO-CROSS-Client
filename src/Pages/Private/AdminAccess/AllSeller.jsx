@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SetSellerInfo } from "../../../Api/User";
 import toast from "react-hot-toast";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
 import Spinner from "../../../Components/Spinner";
+import { AuthContext } from "../../../Context/UserContext";
 
 const AllSeller = () => {
+  const { userDelete } = useContext(AuthContext);
   const [deleteDoc, setDeleteDoc] = useState(null);
   const closeModal = () => {
     setDeleteDoc(null);
   };
 
-  const url = `http://localhost:5000/seller`;
+  const url = `https://server-angon777.vercel.app/seller`;
   const {
     data: allSeller = [],
     isLoading,
@@ -35,28 +37,27 @@ const AllSeller = () => {
     const sellerVerified = { isSellerVerified: "verified" };
     SetSellerInfo(id, sellerVerified).then((data) => {
       if (data.modifiedCount > 0) {
-        fetch(`http://localhost:5000/bikes?email=${email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
-      },
-      body: JSON.stringify(sellerVerified),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Seller Verified!");
-          refetch();
-        }
-      });
-    
+        fetch(`https://server-angon777.vercel.app/bikes?email=${email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+          },
+          body: JSON.stringify(sellerVerified),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              toast.success("Seller Verified!");
+              refetch();
+            }
+          });
       }
     });
   };
 
   const handleDelete = (seller) => {
-    fetch(`http://localhost:5000/user/${seller._id}`, {
+    fetch(`https://server-angon777.vercel.app/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -64,17 +65,21 @@ const AllSeller = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.deletedCount > 0) {
-          toast.success(`${seller.name} Successfully Deleted!`);
-          refetch();
+          userDelete(seller.uid)
+            .then(() => {
+              toast.success(`${seller.name} Successfully Deleted!`);
+              refetch();
+            })
+            .catch((e) => toast.error(e.message));
         }
       });
   };
   if (isLoading) {
     return <Spinner />;
   }
-  console.log(allSeller);
+  // console.log(allSeller);
   return (
     <div>
       <div className="overflow-x-auto w-full">

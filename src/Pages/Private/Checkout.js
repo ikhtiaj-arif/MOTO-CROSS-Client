@@ -17,7 +17,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://server-angon777.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,10 +49,10 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
       card,
     });
     if (error) {
-      console.log("[error]", error);
+      // console.log("[error]", error);
       setCardError(error.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
       setCardError("");
     }
     setCardSuccess("");
@@ -79,7 +79,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
         productId,
       };
 
-      fetch("http://localhost:5000/payments", {
+      fetch("https://server-angon777.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -89,7 +89,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           if (data.insertedId) {
             setCardSuccess("Payment Completed!");
             setTrId(paymentIntent.id);

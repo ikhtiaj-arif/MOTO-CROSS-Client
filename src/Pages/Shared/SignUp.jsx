@@ -52,6 +52,7 @@ const SignUp = () => {
                   image: imageUrl,
                   role: role,
                   email: user?.email,
+                  uid: user.uid,
                   displayName: user.displayName,
                 };
                 setAuthToken(userData);
@@ -59,7 +60,7 @@ const SignUp = () => {
                 navigate(from, { replace: true });
                 setLoading(false);
               })
-              .catch((e) => console.log(e));
+              .catch((e) => toast.error(e.message));
           })
           .catch((e) => {
             toast.error(e.message);
@@ -130,7 +131,7 @@ const SignUp = () => {
                 name="image"
                 accept="image/*"
                 className="file-input file-input-bordered hover:input-accent w-full"
-                // required
+                required
               />
             </div>
             <div>
@@ -138,7 +139,7 @@ const SignUp = () => {
                 Email address
               </label>
               <input
-                // required
+                required
                 type="email"
                 name="email"
                 id="email"
@@ -157,7 +158,7 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 id="password"
-                // required
+                required
                 placeholder="*******"
                 className="input input-bordered hover:input-accent w-full"
               />

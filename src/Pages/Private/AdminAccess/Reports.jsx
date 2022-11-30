@@ -15,7 +15,7 @@ const Reports = () => {
   // axios to load product
 
   // get reports
-  const url = `http://localhost:5000/reports`;
+  const url = `https://server-angon777.vercel.app/reports`;
 
   const {
     data: reports = [],
@@ -36,10 +36,10 @@ const Reports = () => {
   });
 
   //   get reported products
-  // const url2 = `http://localhost:5000/bike/${pp}`;
+  // const url2 = `https://server-angon777.vercel.app/bike/${pp}`;
 
   const handleDeleteReport = (id) => {
-    fetch(`http://localhost:5000/reports/${id}`, {
+    fetch(`https://server-angon777.vercel.app/reports/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -56,7 +56,7 @@ const Reports = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/bike/${id}`, {
+    fetch(`https://server-angon777.vercel.app/bike/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

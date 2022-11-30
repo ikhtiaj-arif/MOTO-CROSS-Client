@@ -75,7 +75,7 @@ const Login = () => {
                 Email address
               </label>
               <input
-                // required
+                required
                 type="email"
                 name="email"
                 id="email"
@@ -93,7 +93,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
-                // required
+                required
                 placeholder="*******"
                 className="input input-bordered hover:input-accent w-full"
               />

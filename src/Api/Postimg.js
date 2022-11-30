@@ -9,7 +9,7 @@ export const PostImage =async (image) => {
       body: formData,
     })
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     const imageUrl = data.data.display_url
     return imageUrl;
    

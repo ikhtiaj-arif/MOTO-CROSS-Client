@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 const ReportCard = ({ report, handleDeleteReport, setDeleteDoc }) => {
-  console.log(report);
+  // console.log(report);
   const { porductId, message, userEmail } = report;
 
   const [bike, setBike] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bike/${report.productId}`, {
+    fetch(`https://server-angon777.vercel.app/bike/${report.productId}`, {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

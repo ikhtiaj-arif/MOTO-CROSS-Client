@@ -19,7 +19,7 @@ const ReportModal = ({ bikeInfo }) => {
       productId,
       userEmail,
     };
-    fetch(`http://localhost:5000/reports`, {
+    fetch(`https://server-angon777.vercel.app/reports`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

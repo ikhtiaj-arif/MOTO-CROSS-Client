@@ -16,7 +16,7 @@ const AdminRoute = ({children}) => {
        setRole(data);
        setRooleLoading(false)
     })
-    console.log(role);
+    // console.log(role);
     if(loading || roleLoading) {
         return <><Spinner/></>
     }

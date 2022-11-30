@@ -6,7 +6,7 @@ const BikesByTitle = () => {
 
 const bikes = useLoaderData()
 // 
-console.log(bikes);
+// console.log(bikes);
 
     return (
         <div>

@@ -13,7 +13,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const bookingInfo = useLoaderData();
 
-  const url = `http://localhost:5000/bike/${bookingInfo.productId}`;
+  const url = `https://server-angon777.vercel.app/bike/${bookingInfo.productId}`;
 
   const { data: bikeInfo = [], isLoading } = useQuery({
     queryKey: ["bike"],

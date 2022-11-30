@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // get user
 export const getUserInfo = async (email) => {
-  const url = `http://localhost:5000/users/${email}`;
+  const url = `https://server-angon777.vercel.app/users/${email}`;
   const res = await fetch(url, {
     headers: {
       authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -16,7 +16,7 @@ export const getUserInfo = async (email) => {
 // get user role
 
 export const getRole = async (email) => {
-  const url = `http://localhost:5000/users/${email}`;
+  const url = `https://server-angon777.vercel.app/users/${email}`;
   const res = await fetch(url, {
     headers: {
       authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -30,7 +30,7 @@ export const getRole = async (email) => {
 // get seller verification info
 
 export const isSellerVerifyed = async (email) => {
-  const url = `http://localhost:5000/users/${email}`;
+  const url = `https://server-angon777.vercel.app/users/${email}`;
   const res = await fetch(url, {
     headers: {
       authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -43,14 +43,17 @@ export const isSellerVerifyed = async (email) => {
 
 // set seler role and verification
 export const SetSellerInfo = async (id, sellerRole) => {
-  const res = await fetch(`http://localhost:5000/users/seller/${id}`, {
-    method: "PUT",
-    headers: {
-      authorization: `bearer ${localStorage.getItem("motocross-token")}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(sellerRole),
-  });
+  const res = await fetch(
+    `https://server-angon777.vercel.app/users/seller/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(sellerRole),
+    }
+  );
   const data = res.json();
   return data;
 };

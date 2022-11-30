@@ -17,7 +17,7 @@ const BookModal = ({ bikeInfo }) => {
     const email = user?.email;
     const number = form.number.value;
     const location = form.location.value;
-    console.log(userName, email);
+    // console.log(userName, email);
     const booking = {
       productId: _id,
       userName,
@@ -27,7 +27,7 @@ const BookModal = ({ bikeInfo }) => {
       location,
     };
 
-    fetch(`http://localhost:5000/bookings`, {
+    fetch(`https://server-angon777.vercel.app/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { SetSellerInfo } from "../../../Api/User";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
 import Spinner from "../../../Components/Spinner";
+import { AuthContext } from "../../../Context/UserContext";
+import { deleteUser } from "firebase/auth";
 
 const AllUsers = () => {
+  const { userDelete } = useContext(AuthContext);
   const [deleteDoc, setDeleteDoc] = useState(null);
   const closeModal = () => {
     setDeleteDoc(null);
   };
 
-  const url = `http://localhost:5000/users`;
+  const url = `https://server-angon777.vercel.app/users`;
   const {
     data: allUsers = [],
     refetch,
@@ -40,7 +43,8 @@ const AllUsers = () => {
   };
 
   const handleDelete = (user) => {
-    fetch(`http://localhost:5000/user/${user._id}`, {
+    // console.log(user.uid);
+    fetch(`https://server-angon777.vercel.app/user/${user._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -48,12 +52,17 @@ const AllUsers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.deletedCount > 0) {
           toast.success(`${user.name} Successfully Deleted!`);
           refetch();
         }
       });
+    // deleteUser(user.uid)
+    // .then(()=>{
+
+    // })
+    // .catch(e => console.log(e))
   };
 
   if (isLoading) {
@@ -63,7 +72,7 @@ const AllUsers = () => {
       </div>
     );
   }
-  console.log(allUsers);
+  // console.log(allUsers);
 
   return (
     <div>

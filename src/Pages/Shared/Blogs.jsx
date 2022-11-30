@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/blogs")
+      .get("https://server-angon777.vercel.app/blogs")
       .then((res) => {
         setBlogs(res.data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => toast.error(e.message));
   }, []);
 
   return (
