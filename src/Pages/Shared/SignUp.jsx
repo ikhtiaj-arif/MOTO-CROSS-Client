@@ -11,19 +11,19 @@ const SignUp = () => {
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   const [checked, setChecked] = useState(false);
   const [role, setRole] = useState(null);
 
-  useEffect(()=>{
-    if(checked){
-      setRole('sellerRequest')
+  useEffect(() => {
+    if (checked) {
+      setRole("sellerRequest");
+    } else {
+      setRole(null);
     }
-    else{setRole(null)}
-  }, [checked])
-  
- 
+  }, [checked]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -32,18 +32,14 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
-  
-   
-   
 
     PostImage(image)
       .then((imageUrl) => {
-       
         // create user
         createUser(email, password)
           .then((result) => {
             const user = result.user;
-          
+
             const profile = {
               displayName: name,
               photoURL: imageUrl,
@@ -51,13 +47,13 @@ const SignUp = () => {
 
             updateUser(profile)
               .then(() => {
-              const userData = {
-                location: location,
-                image: imageUrl,
-                role: role,
-                email: user?.email,
-                displayName: user.displayName
-              }
+                const userData = {
+                  location: location,
+                  image: imageUrl,
+                  role: role,
+                  email: user?.email,
+                  displayName: user.displayName,
+                };
                 setAuthToken(userData);
                 toast.success("user created!");
                 navigate(from, { replace: true });
@@ -67,11 +63,10 @@ const SignUp = () => {
           })
           .catch((e) => {
             toast.error(e.message);
-            
           })
-          .finally(()=>{
-            setLoading(false)
-          })
+          .finally(() => {
+            setLoading(false);
+          });
       })
       .catch((err) => {
         toast.error(err.message);
@@ -87,12 +82,15 @@ const SignUp = () => {
         navigate(from, { replace: true });
       })
       .catch((e) => console.log(e));
-    }
+  };
 
-    if(loading) {
-      return <><Spinner/></>
-    }
-  
+  if (loading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
+  }
 
   return (
     <div className="flex justify-center items-center pt-8">
@@ -170,10 +168,12 @@ const SignUp = () => {
           <div className="">
             <div className="form-control mb-2">
               <label className="cursor-pointer label justify-center">
-                <span className="label-text font-medium">Request To Become A Seller</span>
+                <span className="label-text font-medium">
+                  Request To Become A Seller
+                </span>
                 <input
                   type="checkbox"
-                  onChange={()=>setChecked(!checked)}
+                  onChange={() => setChecked(!checked)}
                   className="checkbox checkbox-info ml-2"
                 />
               </label>
@@ -186,26 +186,21 @@ const SignUp = () => {
               <option disabled selected>
                 Chose Your Location
               </option>
-              
-                <option value='Rajshahi'>Rajshahi</option>
-                <option value='Dhaka'>Dhaka</option>
-                <option value='Rangpur'>Rangpur</option>
-                <option value='Chittagong'>Chittagong</option>
-              
+
+              <option value="Rajshahi">Rajshahi</option>
+              <option value="Dhaka">Dhaka</option>
+              <option value="Rangpur">Rangpur</option>
+              <option value="Chittagong">Chittagong</option>
             </select>
-
-
-
-
-              </div>
-            <div>
-              <button
-                type="submit"
-                className="w-full px-8 btn btn-outline btn-accent"
-              >
-                Sign up
-              </button>
-            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full px-8 btn btn-outline btn-accent"
+            >
+              Sign up
+            </button>
+          </div>
         </form>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
@@ -249,8 +244,11 @@ const SignUp = () => {
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Already have an Account?{" "}
-          <Link to="/login" className="hover:underline text-gray-600 hover:text-accent">
-           LogIn
+          <Link
+            to="/login"
+            className="hover:underline text-gray-600 hover:text-accent"
+          >
+            LogIn
           </Link>
         </p>
       </div>

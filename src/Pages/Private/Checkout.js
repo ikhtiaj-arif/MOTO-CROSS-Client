@@ -17,7 +17,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("https://server-angon777.vercel.app/create-payment-intent", {
+    fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
         productId,
       };
 
-      fetch("https://server-angon777.vercel.app/payments", {
+      fetch("http://localhost:5000/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -99,9 +99,12 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
     setLoading(false);
   };
 
- 
-  if(loading) {
-    return <><Spinner/></>
+  if (loading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
   return (
     <>

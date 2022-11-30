@@ -13,7 +13,7 @@ const MyBookings = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-angon777.vercel.app/bookings?email=${user?.email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -34,7 +34,7 @@ const MyBookings = () => {
   console.log(bookings);
 
   const handleBookingDelete = (id) => {
-    fetch(`https://server-angon777.vercel.app/bookings/${id}`, {
+    fetch(`http://localhost:5000/bookings/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -47,9 +47,12 @@ const MyBookings = () => {
       });
   };
 
-
-  if(isLoading) {
-    return <><Spinner/></>
+  if (isLoading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
 
   return (

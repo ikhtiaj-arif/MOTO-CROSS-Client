@@ -16,7 +16,7 @@ const BikeCard = ({ bike }) => {
   } = bike;
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md ">
+      <div className="max-w-sm my-12 bg-white border border-gray-200 rounded-lg shadow-md ">
         <Link href="#">
           <img className="rounded-t-lg" src={picture} alt="" />
         </Link>
@@ -35,11 +35,11 @@ const BikeCard = ({ bike }) => {
 
           {isSellerVerified === "verified" ? (
             <div className="flex">
-              <p className="text-white">Seller: {seller_name}</p>
-              <FaCheckCircle className="text-success" />
+              <p className="text-gray-700 font-medium mb-2">Seller: {seller_name}</p>
+              <FaCheckCircle className="text-info ml-2" />
             </div>
           ) : (
-            <p className="text-white">{seller_name}</p>
+            <p className="text-gray-700 font-medium mb-2">{seller_name}</p>
           )}
 
           <Link

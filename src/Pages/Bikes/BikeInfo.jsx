@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 import BookModal from "./BookModal";
-import ConfirmationModal from "../../Components/ConfirmationModal";
+
 import ReportModal from "../../Components/ReportModal";
 
 const BikeInfo = () => {
-  const [report, setReport] = useState(null);
-  const closeModal = () => {
-    setReport(null);
-  };
+
 
   const bikeInfo = useLoaderData();
   const {
@@ -24,7 +21,7 @@ const BikeInfo = () => {
     _id,
   } = bikeInfo;
 
-  const handleReport = () => {};
+  
 
   return (
     <div>
@@ -49,7 +46,7 @@ const BikeInfo = () => {
             {isVerified === "verified" ? (
               <div className="flex">
                 <p>Seller: {seller_name}</p>
-                <FaCheckCircle className="text-success" />
+                <FaCheckCircle className="text-info" />
               </div>
             ) : (
               <p>{seller_name}</p>

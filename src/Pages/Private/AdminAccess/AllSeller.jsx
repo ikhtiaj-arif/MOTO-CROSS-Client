@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SetSellerInfo } from "../../../Api/User";
 import toast from "react-hot-toast";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
+import Spinner from "../../../Components/Spinner";
 
 const AllSeller = () => {
   const [deleteDoc, setDeleteDoc] = useState(null);
@@ -10,8 +11,12 @@ const AllSeller = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-angon777.vercel.app/seller`;
-  const { data: allSeller = [], refetch } = useQuery({
+  const url = `http://localhost:5000/seller`;
+  const {
+    data: allSeller = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -24,18 +29,34 @@ const AllSeller = () => {
     },
   });
 
-  const VerifySeller = (id) => {
+  const VerifySeller = (seller) => {
+    const id = seller._id;
+    const email = seller.email;
     const sellerVerified = { isSellerVerified: "verified" };
     SetSellerInfo(id, sellerVerified).then((data) => {
       if (data.modifiedCount > 0) {
-        toast.success("Seller Verified!");
-        refetch();
+        fetch(`http://localhost:5000/bikes?email=${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("motocross-token")}`,
+      },
+      body: JSON.stringify(sellerVerified),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Seller Verified!");
+          refetch();
+        }
+      });
+    
       }
     });
   };
 
   const handleDelete = (seller) => {
-    fetch(`https://server-angon777.vercel.app/user/${seller._id}`, {
+    fetch(`http://localhost:5000/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -50,7 +71,10 @@ const AllSeller = () => {
         }
       });
   };
-
+  if (isLoading) {
+    return <Spinner />;
+  }
+  console.log(allSeller);
   return (
     <div>
       <div className="overflow-x-auto w-full">
@@ -72,7 +96,7 @@ const AllSeller = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="/tailwind-css-component-profile-2@56w.png"
+                          src={seller.image}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -89,14 +113,12 @@ const AllSeller = () => {
                   {seller?.isSellerVerified !== "verified" ? (
                     <>
                       {" "}
-                      (
                       <button
-                        onClick={() => VerifySeller(seller._id)}
+                        onClick={() => VerifySeller(seller)}
                         className="btn btn-info btn-xs"
                       >
                         Verify Seller
                       </button>
-                      )
                     </>
                   ) : (
                     <>{seller?.isSellerVerified}</>

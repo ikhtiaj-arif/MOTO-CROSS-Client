@@ -7,7 +7,7 @@ const ReportCard = ({ report, handleDeleteReport, setDeleteDoc }) => {
   const [bike, setBike] = useState([]);
 
   useEffect(() => {
-    fetch(`https://server-angon777.vercel.app/bike/${report.productId}`, {
+    fetch(`http://localhost:5000/bike/${report.productId}`, {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

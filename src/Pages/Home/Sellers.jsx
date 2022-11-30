@@ -8,15 +8,18 @@ const Sellers = () => {
   const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
-    fetch("https://server-angon777.vercel.app/seller")
+    fetch("http://localhost:5000/seller")
       .then((res) => res.json())
       .then((data) => setSellers(data));
     setLoading(false);
   }, []);
 
-  
-  if(loading) {
-    return <><Spinner/></>
+  if (loading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
   // console.log(sellers);
 
@@ -49,7 +52,7 @@ const Sellers = () => {
                       {seller.displayName}
                     </h4>
                     {seller.isSellerVerified === "verified" && (
-                      <FaCheckCircle className="text-success ml-2" />
+                      <FaCheckCircle className="text-info ml-2" />
                     )}
                   </div>
                   <p className="text-sm dark:text-gray-400">

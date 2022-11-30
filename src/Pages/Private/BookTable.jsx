@@ -5,7 +5,7 @@ const BookTable = ({ booking, setDeleteDoc }) => {
   const [bike, setBike] = useState([]);
 
   useEffect(() => {
-    fetch(`https://server-angon777.vercel.app/bike/${booking.productId}`, {
+    fetch(`http://localhost:5000/bike/${booking.productId}`, {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,

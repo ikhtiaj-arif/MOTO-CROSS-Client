@@ -6,7 +6,7 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     axios
-      .get("https://server-angon777.vercel.app/blogs")
+      .get("http://localhost:5000/blogs")
       .then((res) => {
         setBlogs(res.data);
       })

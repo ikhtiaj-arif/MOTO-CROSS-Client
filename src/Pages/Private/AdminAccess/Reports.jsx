@@ -15,7 +15,7 @@ const Reports = () => {
   // axios to load product
 
   // get reports
-  const url = `https://server-angon777.vercel.app/reports`;
+  const url = `http://localhost:5000/reports`;
 
   const {
     data: reports = [],
@@ -36,10 +36,10 @@ const Reports = () => {
   });
 
   //   get reported products
-  // const url2 = `https://server-angon777.vercel.app/bike/${pp}`;
+  // const url2 = `http://localhost:5000/bike/${pp}`;
 
   const handleDeleteReport = (id) => {
-    fetch(`https://server-angon777.vercel.app/reports/${id}`, {
+    fetch(`http://localhost:5000/reports/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -56,7 +56,7 @@ const Reports = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`https://server-angon777.vercel.app/bike/${id}`, {
+    fetch(`http://localhost:5000/bike/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -69,9 +69,12 @@ const Reports = () => {
       });
   };
 
-  
-  if(isLoading) {
-    return <><Spinner/></>
+  if (isLoading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
   return (
     <div className="">
@@ -83,72 +86,6 @@ const Reports = () => {
           handleDeleteReport={handleDeleteReport}
         ></ReportCard>
       ))}
-      {/* <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>
-             
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {reports.map((report, i) => (
-              <tr key={i}>
-              
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src="/tailwind-css-component-profile-2@56w.png"
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{}</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  {report._id}
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
-                </td>
-                <td>Purple</td>
-
-                <th>
-                  <label
-                    htmlFor="confirmation-modal"
-                    onClick={() => setDeleteDoc(report.productId)}
-                    className="btn"
-                  >
-                    Delete Reported Product{" "}
-                  </label>
-                </th>
-                <th>
-                  <label
-                    htmlFor="confirmation-modal"
-                    onClick={() => handleDeleteReport(report._id)}
-                    className="btn btn-error"
-                  >
-                    X
-                  </label>
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-     
-      </div> */}
       {deleteDoc && (
         <ConfirmationModal
           handleDeleteDoc={handleDelete}

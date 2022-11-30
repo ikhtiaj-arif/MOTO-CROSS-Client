@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
-import {FaOutdent} from "react-icons/fa";
+import { FaOutdent } from "react-icons/fa";
 
 const Nav = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -15,33 +15,30 @@ const Nav = () => {
   const menuItems = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to='/blogs'>Blogs</Link>
+        <Link to="/blogs">Blogs</Link>
       </li>
       <li>
-        <Link to='/dashboard'>Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
-      
+
       <li>
-      {
-       user?.uid ?
-      <>
-       <Link onClick={handleLogout} className="btn btn-accent">
-          LogOut
-        </Link>
-        </>
-        : 
-        <>
-        
-         <Link to='/login' className="btn btn-accent">
-          Log In
-        </Link>
-        </> 
-      }
+        {user?.uid ? (
+          <>
+            <Link onClick={handleLogout} className="btn btn-accent">
+              LogOut
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="btn btn-accent">
+              Log In
+            </Link>
+          </>
+        )}
       </li>
-      
     </>
   );
 
@@ -69,24 +66,20 @@ const Nav = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-         {menuItems}
+            {menuItems}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost normal-case text-xl">MotoCross</Link>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          MotoCross
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
-        {menuItems}
-        </ul>
+        <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-      <label
-        htmlFor="dashboard-drawer"
-        className=" drawer-button md:hidden"
-      >
-       <FaOutdent className="w-4 h-4 mr-3"/>
-      </label>
-      
+        <label htmlFor="dashboard-drawer" className=" drawer-button md:hidden">
+          <FaOutdent className="w-4 h-4 mr-3" />
+        </label>
       </div>
     </div>
   );

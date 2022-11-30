@@ -10,6 +10,7 @@ import Spinner from "../../../Components/Spinner";
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState("");
+
   const navigate = useNavigate();
   useEffect(() => {
     getUserInfo(user?.email).then((data) => setUserInfo(data));
@@ -17,7 +18,7 @@ const AddProducts = () => {
 
   // console.log(userInfo);
 
-  const url = `https://server-angon777.vercel.app/categories`;
+  const url = `http://localhost:5000/categories`;
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["Category"],
     queryFn: async () => {
@@ -26,11 +27,12 @@ const AddProducts = () => {
           authorization: `bearer ${localStorage.getItem("motocross-token")}`,
         },
       });
+
       const data = await res.json();
       return data;
     },
   });
-  // console.log(userInfo);
+  console.log(userInfo);
   const handleAddProduct = (event) => {
     event.preventDefault();
 
@@ -61,9 +63,9 @@ const AddProducts = () => {
         phone,
         status: "available",
       };
-      // console.log(product);
+      console.log(product);
 
-      fetch("https://server-angon777.vercel.app/bike", {
+      fetch("http://localhost:5000/bike", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -76,14 +78,18 @@ const AddProducts = () => {
           // console.log(data);
           if (data.acknowledged) {
             toast.success("booking confirmed!");
-            navigate("/dashboard/myProduct");
+            navigate("/dashboard/myProducts");
           }
         });
     });
   };
 
   if (isLoading) {
-    return <><Spinner/></>;
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
 
   return (
@@ -91,7 +97,7 @@ const AddProducts = () => {
       <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-200">
         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
           <div className="col-span-full sm:col-span-3">
-            <label for="bikeName" className="text-sm">
+            <label htmlFor="bikeName" className="text-sm">
               Bike Name
             </label>
             <input
@@ -103,7 +109,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="col-span-full sm:col-span-3">
-            <label for="orgPrice" className="text-sm">
+            <label htmlFor="orgPrice" className="text-sm">
               Current Condition Of The Bike:
             </label>
             <input
@@ -116,7 +122,7 @@ const AddProducts = () => {
           </div>
 
           <div className="col-span-full sm:col-span-3">
-            <label for="price" className="text-sm">
+            <label htmlFor="price" className="text-sm">
               Price
             </label>
             <input
@@ -128,7 +134,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="col-span-full sm:col-span-3">
-            <label for="orgPrice" className="text-sm">
+            <label htmlFor="orgPrice" className="text-sm">
               Original Price
             </label>
             <input
@@ -140,7 +146,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="col-span-full sm:col-span-3">
-            <label for="orgPrice" className="text-sm">
+            <label htmlFor="orgPrice" className="text-sm">
               Days Used
             </label>
             <input
@@ -152,7 +158,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="col-span-full sm:col-span-3">
-            <label for="orgPrice" className="text-sm">
+            <label htmlFor="orgPrice" className="text-sm">
               Contact
             </label>
             <input
@@ -165,7 +171,7 @@ const AddProducts = () => {
           </div>
 
           <div className="col-span-full">
-            <label for="orgPrice" className="text-sm">
+            <label htmlFor="orgPrice" className="text-sm">
               Upload Picture Of The Bike:
             </label>
             <input
@@ -192,7 +198,7 @@ const AddProducts = () => {
             </select>
           </div>
           <div className="col-span-full">
-            <label for="address" className="text-sm">
+            <label htmlFor="address" className="text-sm">
               Address
             </label>
             <input

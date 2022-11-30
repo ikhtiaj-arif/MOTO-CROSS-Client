@@ -1,44 +1,44 @@
-import React, { useContext } from 'react';
-import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { setAuthToken } from '../../Api/Auth';
-import Spinner from '../../Components/Spinner';
-import { AuthContext } from '../../Context/UserContext';
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../Api/Auth";
+import Spinner from "../../Components/Spinner";
+import { AuthContext } from "../../Context/UserContext";
 
 const Login = () => {
-    const { logInUser, loading, setLoading,googleLogin} = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+  const { logInUser, loading, setLoading, googleLogin } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-        logInUser(email, password)
-        .then(result => {
-            const user = result.user;
-            const currUser ={
-              email: user.email
-            }
-            setAuthToken(currUser);
-            toast.success('login successful!');
-            navigate(from, { replace: true });
-            setLoading(false)
-          })
-          .catch(e => {
-            toast.error(e.message)
-           
-          })
-          .finally(()=>{
-            setLoading(false)
-          })
-    }
+    logInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        const currUser = {
+          email: user.email,
+        };
+        setAuthToken(currUser);
+        toast.success("login successful!");
+        navigate(from, { replace: true });
+        setLoading(false);
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-    const handleGoogleLogin =() => {
-      googleLogin()
+  const handleGoogleLogin = () => {
+    googleLogin()
       .then((result) => {
         const user = result.user;
         toast.success("login successful!");
@@ -46,14 +46,18 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((e) => console.log(e));
-    }
- 
-    if(loading){
-      return <><Spinner/></>
-    }
+  };
 
+  if (loading) {
     return (
-      <div className="flex justify-center items-center pt-8">
+      <>
+        <Spinner />
+      </>
+    );
+  }
+
+  return (
+    <div className="flex justify-center items-center pt-8">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold text-accent">Log In</h1>
@@ -66,7 +70,6 @@ const Login = () => {
           className="space-y-12"
         >
           <div className="space-y-4">
-            
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
                 Email address
@@ -78,7 +81,6 @@ const Login = () => {
                 id="email"
                 placeholder="Enter Your Email Here"
                 className="input input-bordered hover:input-accent w-full"
-               
               />
             </div>
             <div>
@@ -97,8 +99,7 @@ const Login = () => {
               />
             </div>
           </div>
-            <div className="form-control">
-              
+          <div className="form-control">
             <div>
               <button
                 type="submit"
@@ -151,13 +152,16 @@ const Login = () => {
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Don't have an account?{" "}
-          <Link to="/signup" className="hover:underline hover:text-accent text-gray-600">
+          <Link
+            to="/signup"
+            className="hover:underline hover:text-accent text-gray-600"
+          >
             Sign In
           </Link>
         </p>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;

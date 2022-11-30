@@ -11,7 +11,7 @@ const AllUsers = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-angon777.vercel.app/users`;
+  const url = `http://localhost:5000/users`;
   const {
     data: allUsers = [],
     refetch,
@@ -40,7 +40,7 @@ const AllUsers = () => {
   };
 
   const handleDelete = (user) => {
-    fetch(`https://server-angon777.vercel.app/user/${user._id}`, {
+    fetch(`http://localhost:5000/user/${user._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -57,8 +57,13 @@ const AllUsers = () => {
   };
 
   if (isLoading) {
-    return <div><Spinner/></div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
+  console.log(allUsers);
 
   return (
     <div>
@@ -66,11 +71,6 @@ const AllUsers = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
               <th>Name</th>
               <th>Job</th>
               <th>Favorite Color</th>
@@ -80,24 +80,19 @@ const AllUsers = () => {
           <tbody>
             {allUsers.map((user, i) => (
               <tr key={i}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="/tailwind-css-component-profile-2@56w.png"
+                          src={user.photoURL}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{user.email}</div>
-                      <div className="text-sm opacity-50">United States</div>
+                      <div className="font-bold">{user.displayName}</div>
+                      <div className="text-sm opacity-50">{user.email}</div>
                     </div>
                   </div>
                 </td>

@@ -45,9 +45,7 @@ const router = createBrowserRouter([
         path: "/categories/:title",
         element: <BikesByTitle />,
         loader: ({ params }) =>
-          fetch(
-            `https://server-angon777.vercel.app/categories/${params.title}`
-          ),
+          fetch(`http://localhost:5000/categories/${params.title}`),
       },
       {
         path: "/bike/:id",
@@ -57,7 +55,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://server-angon777.vercel.app/bike/${params.id}`),
+          fetch(`http://localhost:5000/bike/${params.id}`),
       },
     ],
   },
@@ -78,7 +76,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`https://server-angon777.vercel.app/bookings/${params.id}`, {
+          fetch(`http://localhost:5000/bookings/${params.id}`, {
             headers: {
               authorization: `bearer ${localStorage.getItem(
                 "motocross-token"

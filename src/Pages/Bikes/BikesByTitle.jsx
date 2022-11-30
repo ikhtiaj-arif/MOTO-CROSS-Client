@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BikeCard from './BikeCard';
 
@@ -10,8 +10,8 @@ console.log(bikes);
 
     return (
         <div>
-            <h2>total bikes{bikes.length}</h2>
-            <div className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
+            <h2 className='text-center text-3xl font-medium mt-6'>Total <span className='text-accent'>{bikes.length}</span> Bikes</h2>
+            <div className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-5  mt-3' >
             {
                 bikes.map(bike => <BikeCard
                 key={bike._id}

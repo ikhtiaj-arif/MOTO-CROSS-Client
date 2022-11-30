@@ -4,6 +4,7 @@ import { SetSellerInfo } from "../../../Api/User";
 import toast from "react-hot-toast";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
 import { FaTrashAlt } from "react-icons/fa";
+import Spinner from "../../../Components/Spinner";
 
 const AllRequestedSeller = () => {
   const [deleteDoc, setDeleteDoc] = useState(null);
@@ -11,8 +12,12 @@ const AllRequestedSeller = () => {
     setDeleteDoc(null);
   };
 
-  const url = `https://server-angon777.vercel.app/sellerRequested`;
-  const { data: allSellerReq = [], refetch } = useQuery({
+  const url = `http://localhost:5000/sellerRequested`;
+  const {
+    data: allSellerReq = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -45,7 +50,7 @@ const AllRequestedSeller = () => {
   };
 
   const handleDelete = (seller) => {
-    fetch(`https://server-angon777.vercel.app/user/${seller._id}`, {
+    fetch(`http://localhost:5000/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -60,6 +65,9 @@ const AllRequestedSeller = () => {
         }
       });
   };
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div>

@@ -27,7 +27,7 @@ const BookModal = ({ bikeInfo }) => {
       location,
     };
 
-    fetch(`https://server-angon777.vercel.app/bookings`, {
+    fetch(`http://localhost:5000/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -44,8 +44,12 @@ const BookModal = ({ bikeInfo }) => {
       });
   };
 
-  if(loading) {
-    return <><Spinner/></>
+  if (loading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
   return (
     <div>
