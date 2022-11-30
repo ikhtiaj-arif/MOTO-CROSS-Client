@@ -1,8 +1,8 @@
-##ADMIN
+## ADMIN
 adminEmail: <admin@admin.com>
 adminPassword: <111111>
 
-##Seller
+## Seller
 sellerEmail: <seller@1.com>
 sellerEmail: <seller@2.com>
 sellerEmail: <seller@3.com>
