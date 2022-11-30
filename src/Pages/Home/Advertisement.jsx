@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import AddvertiseCard from "./AddvertiseCard";
 
 const Advertisement = () => {
-  const url = `http://localhost:5000/advertiseBike`;
+  const url = `https://server-angon777.vercel.app/advertiseBike`;
   const {
     data: bikes = [],
     isLoading,
@@ -27,12 +27,9 @@ const Advertisement = () => {
       <h1 className="text-4xl font-bold">Featcherd Bikes</h1>
       <h1 className="font-medium">Best Deals</h1>
       <div className="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 mt-8">
-      {
-        bikes.map(bike => <AddvertiseCard
-        key={bike._id}
-        bike={bike}
-        ></AddvertiseCard>)
-      }
+        {bikes.map((bike) => (
+          <AddvertiseCard key={bike._id} bike={bike}></AddvertiseCard>
+        ))}
       </div>
     </div>
   );

@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../../Api/Auth';
+import Spinner from '../../Components/Spinner';
 import { AuthContext } from '../../Context/UserContext';
 
 const Login = () => {
-    const {user, logInUser} = useContext(AuthContext);
+    const { logInUser, loading, setLoading,googleLogin} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -25,17 +26,32 @@ const Login = () => {
             setAuthToken(currUser);
             toast.success('login successful!');
             navigate(from, { replace: true });
+            setLoading(false)
           })
           .catch(e => {
             toast.error(e.message)
-         
+           
+          })
+          .finally(()=>{
+            setLoading(false)
           })
     }
 
     const handleGoogleLogin =() => {
-
+      googleLogin()
+      .then((result) => {
+        const user = result.user;
+        toast.success("login successful!");
+        setAuthToken(user);
+        navigate(from, { replace: true });
+      })
+      .catch((e) => console.log(e));
     }
  
+    if(loading){
+      return <><Spinner/></>
+    }
+
     return (
       <div className="flex justify-center items-center pt-8">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">

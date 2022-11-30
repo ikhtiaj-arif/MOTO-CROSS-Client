@@ -5,6 +5,7 @@ import { getUserInfo } from "../../../Api/User";
 import { PostImage } from "../../../Api/Postimg";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Spinner from "../../../Components/Spinner";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
@@ -16,7 +17,7 @@ const AddProducts = () => {
 
   // console.log(userInfo);
 
-  const url = `http://localhost:5000/categories`;
+  const url = `https://server-angon777.vercel.app/categories`;
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["Category"],
     queryFn: async () => {
@@ -62,7 +63,7 @@ const AddProducts = () => {
       };
       // console.log(product);
 
-      fetch("http://localhost:5000/bike", {
+      fetch("https://server-angon777.vercel.app/bike", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -82,13 +83,12 @@ const AddProducts = () => {
   };
 
   if (isLoading) {
-    return <>spinner</>;
+    return <><Spinner/></>;
   }
 
   return (
     <form onSubmit={handleAddProduct}>
       <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-200">
-        
         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
           <div className="col-span-full sm:col-span-3">
             <label for="bikeName" className="text-sm">

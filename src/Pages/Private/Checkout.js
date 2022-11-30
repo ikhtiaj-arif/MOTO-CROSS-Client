@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import UserContext, { AuthContext } from "../../Context/UserContext";
+import Spinner from "../../Components/Spinner";
 
 const Checkout = ({ bikeInfo, bookingInfo }) => {
   const user = useContext(AuthContext);
@@ -16,7 +17,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://server-angon777.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +79,7 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
         productId,
       };
 
-      fetch("http://localhost:5000/payments", {
+      fetch("https://server-angon777.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -98,6 +99,10 @@ const Checkout = ({ bikeInfo, bookingInfo }) => {
     setLoading(false);
   };
 
+ 
+  if(loading) {
+    return <><Spinner/></>
+  }
   return (
     <>
       <form onSubmit={handleSubmit}>

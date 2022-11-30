@@ -4,6 +4,7 @@ import { getRole } from "../Api/User";
 import { AuthContext } from "../Context/UserContext";
 import Nav from "../Pages/Shared/Nav";
 import { FaInstalod, FaBell, FaCalendarPlus,FaUsers, FaUserClock, FaUserCheck,FaRegEdit, FaOutdent} from "react-icons/fa";
+import Spinner from "../Components/Spinner";
 
 
 const Dashboard = () => {
@@ -23,7 +24,7 @@ const Dashboard = () => {
   }, [user?.email]);
 
   if (loading) {
-    return <div>spinner.....</div>;
+    return <div><Spinner/></div>;
   }
 
   return (

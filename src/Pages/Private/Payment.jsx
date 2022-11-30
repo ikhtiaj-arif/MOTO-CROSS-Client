@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "./Checkout";
+import Spinner from "../../Components/Spinner";
 
 const stripePromise = loadStripe(
   "pk_test_51M6HH1DbwsTqqvezGHc9zCMmRA84s9h16VFbXMki8MBacJQx68ZBsiTqpoGgidn10lC5XjSJzT2NtbnvmozmXksI00gj2dtJ9q"
@@ -12,7 +13,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const bookingInfo = useLoaderData();
 
-  const url = `http://localhost:5000/bike/${bookingInfo.productId}`;
+  const url = `https://server-angon777.vercel.app/bike/${bookingInfo.productId}`;
 
   const { data: bikeInfo = [], isLoading } = useQuery({
     queryKey: ["bike"],
@@ -23,7 +24,11 @@ const Payment = () => {
     },
   });
 
-  console.log(bookingInfo.productId);
+  
+  if(isLoading) {
+    return <><Spinner/></>
+  }
+  // console.log(bookingInfo.productId);
 
   return (
     <div>

@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../Api/Auth";
 import { PostImage } from "../../Api/Postimg";
+import Spinner from "../../Components/Spinner";
 import { AuthContext } from "../../Context/UserContext";
 
 const SignUp = () => {
@@ -60,13 +61,17 @@ const SignUp = () => {
                 setAuthToken(userData);
                 toast.success("user created!");
                 navigate(from, { replace: true });
+                setLoading(false);
               })
               .catch((e) => console.log(e));
           })
           .catch((e) => {
             toast.error(e.message);
-            setLoading(false);
-          });
+            
+          })
+          .finally(()=>{
+            setLoading(false)
+          })
       })
       .catch((err) => {
         toast.error(err.message);
@@ -79,11 +84,14 @@ const SignUp = () => {
         const user = result.user;
         toast.success("login successful!");
         setAuthToken(user);
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((e) => console.log(e));
     }
 
+    if(loading) {
+      return <><Spinner/></>
+    }
   
 
   return (

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { getRole } from '../Api/User';
 import { AuthContext } from '../Context/UserContext';
 import { Navigate, useLocation } from 'react-router-dom';
+import Spinner from '../Components/Spinner';
 
 const AdminRoute = ({children}) => {
     const {loading, user} = useContext(AuthContext);
@@ -17,7 +18,7 @@ const AdminRoute = ({children}) => {
     })
     console.log(role);
     if(loading || roleLoading) {
-        return <>spinner</>
+        return <><Spinner/></>
     }
     if(user && role === 'admin'){
         return children

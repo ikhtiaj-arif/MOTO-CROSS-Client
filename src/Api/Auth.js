@@ -1,7 +1,7 @@
 export const setAuthToken = (userData) => {
-  // http://localhost:5000
+  // https://server-angon777.vercel.app
   // save user in db and get token
-  fetch(`http://localhost:5000/users/${userData?.email}`, {
+  fetch(`https://server-angon777.vercel.app/users/${userData?.email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",

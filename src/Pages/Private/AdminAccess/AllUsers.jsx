@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { SetSellerInfo } from "../../../Api/User";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
+import Spinner from "../../../Components/Spinner";
 
 const AllUsers = () => {
   const [deleteDoc, setDeleteDoc] = useState(null);
@@ -10,7 +11,7 @@ const AllUsers = () => {
     setDeleteDoc(null);
   };
 
-  const url = `http://localhost:5000/users`;
+  const url = `https://server-angon777.vercel.app/users`;
   const {
     data: allUsers = [],
     refetch,
@@ -39,7 +40,7 @@ const AllUsers = () => {
   };
 
   const handleDelete = (user) => {
-    fetch(`http://localhost:5000/user/${user._id}`, {
+    fetch(`https://server-angon777.vercel.app/user/${user._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -56,7 +57,7 @@ const AllUsers = () => {
   };
 
   if (isLoading) {
-    return <div>spinner</div>;
+    return <div><Spinner/></div>;
   }
 
   return (

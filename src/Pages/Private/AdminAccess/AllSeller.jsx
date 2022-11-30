@@ -10,7 +10,7 @@ const AllSeller = () => {
     setDeleteDoc(null);
   };
 
-  const url = `http://localhost:5000/seller`;
+  const url = `https://server-angon777.vercel.app/seller`;
   const { data: allSeller = [], refetch } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
@@ -35,7 +35,7 @@ const AllSeller = () => {
   };
 
   const handleDelete = (seller) => {
-    fetch(`http://localhost:5000/user/${seller._id}`, {
+    fetch(`https://server-angon777.vercel.app/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -67,7 +67,6 @@ const AllSeller = () => {
           <tbody>
             {allSeller.map((seller, i) => (
               <tr key={i}>
-              
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -81,10 +80,9 @@ const AllSeller = () => {
                   </div>
                 </td>
                 <td>
-                <div className="font-bold">{seller.displayName}</div>
-                      <div className="text-sm opacity-50">{seller.email}</div>
+                  <div className="font-bold">{seller.displayName}</div>
+                  <div className="text-sm opacity-50">{seller.email}</div>
                   <br />
-                  
                 </td>
                 <td>{seller.location}</td>
                 <th>
@@ -104,7 +102,7 @@ const AllSeller = () => {
                     <>{seller?.isSellerVerified}</>
                   )}
                 </th>
-                
+
                 <th>
                   <label
                     htmlFor="confirmation-modal"

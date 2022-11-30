@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../Context/UserContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../Components/Spinner";
 
 const BookModal = ({ bikeInfo }) => {
   const { Bike_Name, price, _id } = bikeInfo;
@@ -26,7 +27,7 @@ const BookModal = ({ bikeInfo }) => {
       location,
     };
 
-    fetch(`http://localhost:5000/bookings`, {
+    fetch(`https://server-angon777.vercel.app/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -43,6 +44,9 @@ const BookModal = ({ bikeInfo }) => {
       });
   };
 
+  if(loading) {
+    return <><Spinner/></>
+  }
   return (
     <div>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />

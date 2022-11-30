@@ -4,6 +4,7 @@ import { AuthContext } from "../../Context/UserContext";
 
 import ConfirmationModal from "../../Components/ConfirmationModal";
 import BookTable from "./BookTable";
+import Spinner from "../../Components/Spinner";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -12,11 +13,7 @@ const MyBookings = () => {
     setDeleteDoc(null);
   };
 
-
-
-
-
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://server-angon777.vercel.app/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -36,12 +33,8 @@ const MyBookings = () => {
   });
   console.log(bookings);
 
-
-
-
-
   const handleBookingDelete = (id) => {
-    fetch(`http://localhost:5000/bookings/${id}`, {
+    fetch(`https://server-angon777.vercel.app/bookings/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -54,8 +47,9 @@ const MyBookings = () => {
       });
   };
 
-  if (isLoading) {
-    return <>spinner</>;
+
+  if(isLoading) {
+    return <><Spinner/></>
   }
 
   return (
@@ -73,13 +67,13 @@ const MyBookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookings.map(booking=> <BookTable
-            key={booking._id}
-            booking={booking}
-            setDeleteDoc={setDeleteDoc}
-            ></BookTable>
-              
-            )}
+            {bookings.map((booking) => (
+              <BookTable
+                key={booking._id}
+                booking={booking}
+                setDeleteDoc={setDeleteDoc}
+              ></BookTable>
+            ))}
           </tbody>
         </table>
         {deleteDoc && (

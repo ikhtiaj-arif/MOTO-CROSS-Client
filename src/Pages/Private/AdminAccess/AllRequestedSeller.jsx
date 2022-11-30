@@ -5,14 +5,13 @@ import toast from "react-hot-toast";
 import ConfirmationModal from "../../../Components/ConfirmationModal";
 import { FaTrashAlt } from "react-icons/fa";
 
-
 const AllRequestedSeller = () => {
   const [deleteDoc, setDeleteDoc] = useState(null);
   const closeModal = () => {
     setDeleteDoc(null);
   };
 
-  const url = `http://localhost:5000/sellerRequested`;
+  const url = `https://server-angon777.vercel.app/sellerRequested`;
   const { data: allSellerReq = [], refetch } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
@@ -46,7 +45,7 @@ const AllRequestedSeller = () => {
   };
 
   const handleDelete = (seller) => {
-    fetch(`http://localhost:5000/user/${seller._id}`, {
+    fetch(`https://server-angon777.vercel.app/user/${seller._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("motocross-token")}`,
@@ -78,7 +77,6 @@ const AllRequestedSeller = () => {
           <tbody>
             {allSellerReq.map((seller, i) => (
               <tr key={i}>
-              
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -92,10 +90,9 @@ const AllRequestedSeller = () => {
                   </div>
                 </td>
                 <td>
-                <div className="font-bold">{seller.displayName}</div>
-                      <div className="text-sm opacity-50">{seller.email}</div>
+                  <div className="font-bold">{seller.displayName}</div>
+                  <div className="text-sm opacity-50">{seller.email}</div>
                   <br />
-                  
                 </td>
                 <td>{seller.location}</td>
                 <th>
@@ -117,7 +114,7 @@ const AllRequestedSeller = () => {
                     </>
                   )}
                 </th>
-                
+
                 <th>
                   <label
                     htmlFor="confirmation-modal"

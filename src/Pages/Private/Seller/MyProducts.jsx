@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import Spinner from "../../../Components/Spinner";
 import { AuthContext } from "../../../Context/UserContext";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/bikes?email=${user.email}`;
+  const url = `https://server-angon777.vercel.app/bikes?email=${user.email}`;
   const {
     data: bikes = [],
     isLoading,
@@ -24,12 +25,10 @@ const MyProducts = () => {
     },
   });
 
-
-
   const handleAdvertise = (id) => {
     const data = { isAdvertised: "advertise" };
 
-    fetch(`http://localhost:5000/bike/${id}`, {
+    fetch(`https://server-angon777.vercel.app/bike/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -47,7 +46,7 @@ const MyProducts = () => {
   };
   const calcelAdvertise = (id) => {
     const data = { isAdvertised: null };
-    fetch(`http://localhost:5000/bike/${id}`, {
+    fetch(`https://server-angon777.vercel.app/bike/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -66,7 +65,7 @@ const MyProducts = () => {
 
   console.log(bikes);
   if (isLoading) {
-    return <>spinner</>;
+    return <><Spinner/></>;
   }
 
   return (
@@ -75,7 +74,6 @@ const MyProducts = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              
               <th>Bike</th>
               <th></th>
               <th>Price</th>
@@ -86,15 +84,11 @@ const MyProducts = () => {
           <tbody>
             {bikes.map((bike, i) => (
               <tr key={i}>
-               
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask w-14 h-12">
-                        <img
-                          src={bike.picture}
-                          alt=""
-                        />
+                        <img src={bike.picture} alt="" />
                       </div>
                     </div>
                     <div>
@@ -108,13 +102,12 @@ const MyProducts = () => {
                   {}
                   <br />
                   <span className="badge badge-ghost badge-sm">
-                   {bike.price}
+                    {bike.price}
                   </span>
                 </td>
                 <td> {bike.status}</td>
                 <td>
-                  
-                {bike.status !== "sold" && (
+                  {bike.status !== "sold" && (
                     <>
                       {" "}
                       {bike.status === "available" &&
@@ -136,9 +129,7 @@ const MyProducts = () => {
                     </>
                   )}
                 </td>
-                <th>
-                  
-                </th>
+                <th></th>
               </tr>
             ))}
           </tbody>
