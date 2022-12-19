@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../Api/Auth";
 import Spinner from "../../Components/Spinner";
+import TrActionBtn from "../../Components/TrActionBtn";
 import { AuthContext } from "../../Context/UserContext";
 
 const Login = () => {
@@ -71,7 +72,7 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="email" className="block mb-2 font-medium text-sm">
                 Email address
               </label>
               <input
@@ -85,7 +86,7 @@ const Login = () => {
             </div>
             <div>
               <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm">
+                <label htmlFor="password" className="text-sm font-medium">
                   Password
                 </label>
               </div>
@@ -100,13 +101,9 @@ const Login = () => {
             </div>
           </div>
           <div className="form-control">
-            <div>
-              <button
-                type="submit"
-                className="w-full px-8 btn btn-outline btn-accent"
-              >
-                Log In
-              </button>
+            <div  className='w-full'>
+               <TrActionBtn type="submit" title='Log In'/> 
+              
             </div>
           </div>
         </form>

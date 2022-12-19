@@ -40,7 +40,10 @@ const About = () => {
             
               <p className="py-2"> the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p> 
             </div>
+            <div className='w-2/4'>
+              
             <TrActionBtn title='Get More Info' className="btn btn-accent"></TrActionBtn>
+            </div>
           </motion.div>
         </div>
       </div>

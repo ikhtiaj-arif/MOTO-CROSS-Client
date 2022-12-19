@@ -100,7 +100,7 @@ const Nav = () => {
         )}
       </li>
 
-      
+
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -125,13 +125,13 @@ const Nav = () => {
           </>
         ) : (
           <>
-          <TrActionBtn
-          title='  Log In'>
+         
 
             <Link to="/login" >
-            
+            <TrActionBtn
+          title='Log In'/>
             </Link>
-          </TrActionBtn>
+         
           </>
         )}
       </li>

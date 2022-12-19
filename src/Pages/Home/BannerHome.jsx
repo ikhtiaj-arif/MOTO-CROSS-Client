@@ -21,14 +21,17 @@ const BannerHome = () => {
               There are many variations of bikes available, Find the one you desire the most at the best price possible
               </p>
               <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-8">
-                
+               <a href="#category">
               <TrActionBtn
               title='Buy form us'
               />
+              </a> 
                   
-                <ActionBtn title='Become A Seller'>
-                <Link to='/signup'></Link>
-                </ActionBtn>
+             
+                <Link to='/signup'>
+                <ActionBtn title='Become A Seller'/>
+                </Link>
+               
                
                 
               </div>

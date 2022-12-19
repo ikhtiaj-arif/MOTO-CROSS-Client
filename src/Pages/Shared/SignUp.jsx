@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../Api/Auth";
 import { PostImage } from "../../Api/Postimg";
 import Spinner from "../../Components/Spinner";
+import TrActionBtn from "../../Components/TrActionBtn";
 import { AuthContext } from "../../Context/UserContext";
 
 const SignUp = () => {
@@ -108,7 +109,7 @@ const SignUp = () => {
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="email" className="block mb-2 text-sm font-medium">
                 Name
               </label>
               <input
@@ -122,7 +123,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor="image" className="block mb-2 text-sm">
+              <label htmlFor="image" className="block mb-2 text-sm font-medium">
                 Select Image:
               </label>
               <input
@@ -135,7 +136,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="email" className="block mb-2 text-sm font-medium">
                 Email address
               </label>
               <input
@@ -150,7 +151,7 @@ const SignUp = () => {
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <label htmlFor="password" className="text-sm">
+                <label htmlFor="password" className="text-sm font-medium">
                   Password
                 </label>
               </div>
@@ -184,23 +185,24 @@ const SignUp = () => {
               name="location"
               className="select select-bordered w-full max-w-xs hover:select-accent"
             >
-              <option disabled selected>
+              <option className="font-medium p-2"  disabled selected>
                 Chose Your Location
               </option>
 
-              <option value="Rajshahi">Rajshahi</option>
-              <option value="Dhaka">Dhaka</option>
-              <option value="Rangpur">Rangpur</option>
-              <option value="Chittagong">Chittagong</option>
+              <option className="font-medium p-2" value="Rajshahi">Rajshahi</option>
+              <option className="font-medium p-2"  value="Dhaka">Dhaka</option>
+              <option className="font-medium p-2"  value="Rangpur">Rangpur</option>
+              <option className="font-medium p-2" value="Chittagong">Chittagong</option>
             </select>
           </div>
           <div>
-            <button
+            <TrActionBtn
               type="submit"
               className="w-full px-8 btn btn-outline btn-accent"
+              title='Sign up'
             >
-              Sign up
-            </button>
+              
+            </TrActionBtn>
           </div>
         </form>
         <div className="flex items-center pt-4 space-x-1">
