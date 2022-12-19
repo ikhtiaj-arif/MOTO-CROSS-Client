@@ -30,7 +30,8 @@ const Advertisement = () => {
   }
 
   return (
-    <div className="mt-32 text-center ">
+    <div id="add"
+    className="mt-32 text-center ">
       <h1 className="text-4xl font-bold">Featcherd Bikes</h1>
       <h1 className="font-medium">Best Deals</h1>
       <div className="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 mt-8">

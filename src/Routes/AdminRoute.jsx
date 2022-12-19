@@ -7,16 +7,16 @@ import Spinner from '../Components/Spinner';
 const AdminRoute = ({children}) => {
     const {loading, user} = useContext(AuthContext);
     const [role, setRole] = useState(null);
-    const [roleLoading, setRooleLoading] = useState(true)
+    const [roleLoading, setRoleLoading] = useState(true)
     const location = useLocation()
 
 
     getRole(user?.email)
     .then(data => {
        setRole(data);
-       setRooleLoading(false)
+       setRoleLoading(false)
     })
-    // console.log(role);
+    console.log(role);
     if(loading || roleLoading) {
         return <><Spinner/></>
     }

@@ -2,10 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import './Style/BannerHome.css'
 import bike from '../../Assects/images/bike_banner.jpg'
+import TrActionBtn from '../../Components/TrActionBtn';
+import ActionBtn from '../../Components/ActionBtn';
 
 const BannerHome = () => {
     return (
-        <div  className="carousel-item relative w-full">
+        <div id='home' className="carousel-item relative w-full">
         <div className="carousel-img">
           <img src={bike} alt="" className="w-full  rounded-xl" />
         </div>
@@ -20,12 +22,14 @@ const BannerHome = () => {
               </p>
               <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-8">
                 
-              <button className="btn btn-outline btn-accent">
-                  Buy Form Us
-                </button>
-                <button className="btn btn-active btn-accent">
-                  <Link to='/signup'>Become A Seller</Link>
-                </button>
+              <TrActionBtn
+              title='Buy form us'
+              />
+                  
+                <ActionBtn title='Become A Seller'>
+                <Link to='/signup'></Link>
+                </ActionBtn>
+               
                 
               </div>
             </div>

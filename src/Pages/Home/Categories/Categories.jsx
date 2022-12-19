@@ -10,9 +10,9 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="mx-auto mt-24">
+    <div id="category" className="mx-auto mt-24">
       <div className="text-center">
-        <h1 className="text-2xl  font-bold text-orange-600">Categories</h1>
+        <h1 className="text-2xl  font-bold text-accent">Categories</h1>
         <h1 className="text-5xl py-3 font-bold">The Best Deal In Town</h1>
         <p className="py-2 font-medium w-3/5 mx-auto text-gray-500">
           Chose the type bike you desire, We have sellers and buyers from all
