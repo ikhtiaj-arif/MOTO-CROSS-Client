@@ -22,7 +22,7 @@ const ReportCard = ({ report, handleDeleteReport, setDeleteDoc }) => {
   return (
     <div className="card card-side bg-base-100 shadow-xl">
       <figure>
-        <img src={bike.picture} className="md:w-2/4" alt="Movie" />
+        <img src={bike.picture} className="md:w-1/4" alt="Movie" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{bike.Bike_Name}</h2>

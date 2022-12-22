@@ -18,7 +18,7 @@ const config = {
 function App() {
   
   return (
-    <div className="lg:w-3/4 mx-auto">
+    <div className="">
       
       <Toaster/>
      <RouterProvider router={router}></RouterProvider>

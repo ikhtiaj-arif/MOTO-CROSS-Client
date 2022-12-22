@@ -12,7 +12,8 @@ module.exports = {
           accent: "#40a798",
           neutral: "#191D24",
           "base-100": "#ffffff",
-          info: "#3ABFF8"
+          info: "#3ABFF8",
+          error: '#eb2632'
         },
       },
       "halloween"

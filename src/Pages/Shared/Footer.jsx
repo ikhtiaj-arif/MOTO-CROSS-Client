@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
-      <ul className="grid grid-flow-col  gap-4">
+      <ul className="w-full md:flex justify-center gap-4">
   
-    <li>
+    <div className="flex gap-4"><li>
           <Link to="/">Home</Link>
         </li>
         <li>
@@ -15,9 +15,13 @@ const Footer = () => {
         <li>
           <a href="#add">Featcher </a>
         </li>
+     
         <li>
           <a href="#info">Stats </a>
         </li>
+        </div>
+        <div className="flex gap-4">
+
         <li>
           <a href="#category">Categories</a>
         </li>
@@ -30,6 +34,7 @@ const Footer = () => {
         <li>
           <a href="#testimonial">testimonial</a>
         </li>
+        </div>
 
       </ul>
       <div>
@@ -69,8 +74,9 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div>
-        <p>Copyright © 2022 - All right reserved by MD.Ikhtiaj Arif</p>
+      <div className="md:flex">
+        <p>Copyright © 2022 -</p>
+        <p> All right reserved by MD.Ikhtiaj Arif</p>
       </div>
     </footer>
   );

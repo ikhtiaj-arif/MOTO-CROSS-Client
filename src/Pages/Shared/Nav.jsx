@@ -115,7 +115,7 @@ const Nav = () => {
       <li>
         {user?.uid ? (
           <>
-           <Link to="/dashboard">Dashboard</Link>
+           <Link to="/dashboard" className="font-medium px-2">Dashboard</Link>
             <Link onClick={handleLogout} className="btn btn-outline btn-accent">
               LogOut
             </Link>
