@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Testimonials = () => {
   return (
-    <div id="testimonial" className="mt-24">
+    <div id="testimonial" className="mt-24 lg:w-3/4 mx-auto">
       <div className="text-center">
         <h1 className="text-2xl  font-bold text-accent">Testimonials</h1>
         <h1 className="text-5xl py-3 font-bold">The user's feedbacks</h1>

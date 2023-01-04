@@ -51,7 +51,7 @@ const Nav = () => {
   );
 
   return (
-    <div className="navbar py-5">
+    <div className="navbar lg:w-3/4 mx-auto py-5">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
