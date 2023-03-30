@@ -2,18 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Spinner from "../../Components/Spinner";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     axios
       .get("https://server-angon777.vercel.app/blogs")
       .then((res) => {
         setBlogs(res.data);
+        setLoading(false)
       })
       .catch((e) => toast.error(e.message));
   }, []);
 
+if(loading){
+  return <Spinner/>
+}
   return (
     <div>
       {blogs.map((blog) => (

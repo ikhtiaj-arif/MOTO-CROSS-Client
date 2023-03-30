@@ -30,7 +30,7 @@ const Services = () => {
             <div className="flex justify-center p-4 align-middle rounded-lg sm:p-4">
               <img src={logo3} className="w-2/4 " alt="" />
             </div>
-            <div className="text-center p-4 text-gray-600justify-center ">
+            <div className="text-center p-4 justify-center ">
               <p className="text-3xl font-semibold leading-none">24/7</p>
               <p className="capitalize">Customer Support</p>
             </div>
@@ -47,7 +47,7 @@ const Services = () => {
             <div className="flex justify-center p-4 align-middle rounded-lg sm:p-4">
               <img src={logo4} className="w-2/4 " alt="" />
             </div>
-            <div className="text-center p-4 text-gray-600justify-center ">
+            <div className="text-center p-4 justify-center ">
               <p className="text-3xl font-semibold leading-none">200+</p>
               <p className="capitalize">Orders</p>
             </div>
@@ -64,7 +64,7 @@ const Services = () => {
             <div className="flex justify-center p-4 align-middle rounded-lg sm:p-4">
               <img src={logo2} className="w-2/4 " alt="" />
             </div>
-            <div className="text-center p-4 text-gray-600  justify-center ">
+            <div className="text-center p-4   justify-center ">
               <p className="text-3xl font-semibold leading-none">On Time</p>
               <p className="capitalize">Delivery</p>
             </div>
@@ -81,7 +81,7 @@ const Services = () => {
             <div className="flex justify-center p-4 align-middle rounded-lg sm:p-4">
               <img src={logo1} className="w-2/4 " alt="" />
             </div>
-            <div className="text-center p-4 text-gray-600justify-center ">
+            <div className="text-center p-4 justify-center ">
               <p className="text-3xl font-semibold leading-none">Excellent </p>
               <p className="capitalize">Service</p>
             </div>

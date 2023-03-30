@@ -1,0 +1,102 @@
+[debug] [2023-03-30T16:47:59.857Z] ----------------------------------------------------------------------
+[debug] [2023-03-30T16:47:59.861Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-03-30T16:47:59.861Z] CLI Version:   11.15.0
+[debug] [2023-03-30T16:47:59.862Z] Platform:      win32
+[debug] [2023-03-30T16:47:59.862Z] Node Version:  v19.6.0
+[debug] [2023-03-30T16:47:59.862Z] Time:          Thu Mar 30 2023 22:47:59 GMT+0600 (Bangladesh Standard Time)
+[debug] [2023-03-30T16:47:59.862Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-30T16:47:59.867Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-03-30T16:47:59.994Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-30T16:47:59.994Z] > authorizing via signed-in user (ikhtiaj.arif@gmail.com)
+[debug] [2023-03-30T16:47:59.994Z] [iam] checking project moto-cross-1 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-30T16:47:59.995Z] > refreshing access token with scopes: []
+[debug] [2023-03-30T16:47:59.996Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-30T16:47:59.996Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:48:00.712Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-03-30T16:48:00.712Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-03-30T16:48:01.817Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-03-30T16:48:01.817Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:48:01.818Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions [none]
+[debug] [2023-03-30T16:48:01.818Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions x-goog-quota-user=projects/moto-cross-1
+[debug] [2023-03-30T16:48:01.818Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-30T16:48:03.479Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions 401
+[debug] [2023-03-30T16:48:03.479Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2023-03-30T16:48:03.480Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-03-30T16:48:03.481Z] > refreshing access token with scopes: []
+[debug] [2023-03-30T16:48:03.481Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-30T16:48:03.481Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:48:04.131Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-03-30T16:48:04.131Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:48:04.131Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moto-cross-1 [none]
+[debug] [2023-03-30T16:48:05.925Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moto-cross-1 401
+[debug] [2023-03-30T16:48:05.925Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moto-cross-1 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2023-03-30T16:48:05.926Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-03-30T16:48:06.278Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project moto-cross-1. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-03-30T16:49:53.684Z] ----------------------------------------------------------------------
+[debug] [2023-03-30T16:49:53.687Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-03-30T16:49:53.687Z] CLI Version:   11.15.0
+[debug] [2023-03-30T16:49:53.687Z] Platform:      win32
+[debug] [2023-03-30T16:49:53.688Z] Node Version:  v19.6.0
+[debug] [2023-03-30T16:49:53.688Z] Time:          Thu Mar 30 2023 22:49:53 GMT+0600 (Bangladesh Standard Time)
+[debug] [2023-03-30T16:49:53.688Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-30T16:49:53.763Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-30T16:49:53.763Z] > authorizing via signed-in user (ikhtiaj.arif@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\programming-hero-react\assignment-12\moto-cross-client
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2023-03-30T16:50:26.864Z] ----------------------------------------------------------------------
+[debug] [2023-03-30T16:50:26.868Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-03-30T16:50:26.869Z] CLI Version:   11.15.0
+[debug] [2023-03-30T16:50:26.869Z] Platform:      win32
+[debug] [2023-03-30T16:50:26.869Z] Node Version:  v19.6.0
+[debug] [2023-03-30T16:50:26.869Z] Time:          Thu Mar 30 2023 22:50:26 GMT+0600 (Bangladesh Standard Time)
+[debug] [2023-03-30T16:50:26.870Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-30T16:50:26.946Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-30T16:50:26.946Z] > authorizing via signed-in user (ikhtiaj.arif@gmail.com)
+[debug] [2023-03-30T16:50:26.947Z] [iam] checking project moto-cross-1 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-30T16:50:26.948Z] > refreshing access token with scopes: []
+[debug] [2023-03-30T16:50:26.950Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-30T16:50:26.951Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:50:28.813Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-03-30T16:50:28.814Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:50:28.814Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions [none]
+[debug] [2023-03-30T16:50:28.814Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions x-goog-quota-user=projects/moto-cross-1
+[debug] [2023-03-30T16:50:28.815Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-30T16:50:30.420Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions 401
+[debug] [2023-03-30T16:50:30.421Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-cross-1:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2023-03-30T16:50:30.422Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-03-30T16:50:30.422Z] > refreshing access token with scopes: []
+[debug] [2023-03-30T16:50:30.423Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-30T16:50:30.423Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:50:31.074Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-03-30T16:50:31.074Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-30T16:50:31.074Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moto-cross-1 [none]
+[debug] [2023-03-30T16:50:31.470Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moto-cross-1 401
+[debug] [2023-03-30T16:50:31.470Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moto-cross-1 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2023-03-30T16:50:31.471Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-03-30T16:50:31.829Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\ikhti\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project moto-cross-1. Please make sure the project exists and your account has permission to access it.

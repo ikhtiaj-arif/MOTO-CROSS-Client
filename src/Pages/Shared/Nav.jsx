@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
+import { FaChevronDown, FaOutdent } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../Context/UserContext";
-import { FaOutdent, FaChevronDown } from "react-icons/fa";
 import TrActionBtn from "../../Components/TrActionBtn";
+import { AuthContext } from "../../Context/UserContext";
 
 const Nav = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -22,31 +22,31 @@ const Nav = () => {
         <Link to="/blogs">Blogs</Link>
       </li>
       <li>
-       <a href="#add">Featcher </a>
+        <a href="#add">Featcher </a>
       </li>
       <li>
-       <a href="#info">Stats </a>
+        <a href="#info">Stats </a>
       </li>
       <li>
-       <a href="#category">Categories</a>
+        <a href="#category">Categories</a>
       </li>
       <li tabindex="0">
-          <a class="justify-between">
-            Parent
-            <FaChevronDown/>
-          </a>
-          <ul class="p-2 z-10 bg-base-100 rounded-md">
-            <li><a href="#service">Service </a></li>
-            <li><a href="#seller">Team</a></li>
-            <li><a href="#testimonial">testimonial</a></li>
-          </ul>
-        </li>
-   
-  
-    
-      
-
-    
+        <a class="justify-between">
+          Parent
+          <FaChevronDown />
+        </a>
+        <ul class="p-2 z-10 bg-base-100 rounded-md">
+          <li>
+            <a href="#service">Service </a>
+          </li>
+          <li>
+            <a href="#seller">Team</a>
+          </li>
+          <li>
+            <a href="#testimonial">testimonial</a>
+          </li>
+        </ul>
+      </li>
     </>
   );
 
@@ -77,30 +77,30 @@ const Nav = () => {
             {menuItems}
 
             <li>
-        {user?.uid ? (
-          <>
-           <Link to="/dashboard">Dashboard</Link>
-            <Link onClick={handleLogout} className="btn btn-outline btn-accent">
-              LogOut
-            </Link>
-            <label htmlFor="dashboard-drawer" className=" drawer-button md:hidden">
-          <FaOutdent className="w-4 h-4 mr-3" />
-        </label>
-          </>
-        ) : (
-          <>
-          <TrActionBtn
-          title='  Log In'>
-
-            <Link to="/login" >
-            
-            </Link>
-          </TrActionBtn>
-          </>
-        )}
-      </li>
-
-
+              {user?.uid ? (
+                <>
+                  <Link to="/dashboard">Dashboard</Link>
+                  <Link
+                    onClick={handleLogout}
+                    className="bg-transparent border border-accent text-gradient-to-l w-full px-6 py-2 hover:bg-gradient-to-l from-accent to-red-600 hover:text-white font-medium uppercase  rounded-full tra"
+                  >
+                    LogOut
+                  </Link>
+                  <label
+                    htmlFor="dashboard-drawer"
+                    className=" drawer-button md:hidden"
+                  >
+                    <FaOutdent className="w-4 h-4 mr-3" />
+                  </label>
+                </>
+              ) : (
+                <>
+                  <TrActionBtn title="  Log In">
+                    <Link to="/login"></Link>
+                  </TrActionBtn>
+                </>
+              )}
+            </li>
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -108,35 +108,36 @@ const Nav = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal font-medium p-0">{menuItems}     
-        </ul>
+        <ul className="menu menu-horizontal font-medium p-0">{menuItems}</ul>
       </div>
       <ul className="navbar-end hidden lg:flex">
-      <li>
-        {user?.uid ? (
-          <>
-           <Link to="/dashboard" className="font-medium px-2">Dashboard</Link>
-            <Link onClick={handleLogout} className="btn btn-outline btn-accent">
-              LogOut
-            </Link>
-            <label htmlFor="dashboard-drawer" className=" drawer-button md:hidden">
-          <FaOutdent className="w-4 h-4 mr-3" />
-        </label>
-          </>
-        ) : (
-          <>
-         
-
-            <Link to="/login" >
-            <TrActionBtn
-          title='Log In'/>
-            </Link>
-         
-          </>
-        )}
-      </li>
-        
-       
+        <li>
+          {user?.uid ? (
+            <>
+              <Link to="/dashboard" className="font-medium px-2">
+                Dashboard
+              </Link>
+              <Link
+                onClick={handleLogout}
+                className="bg-transparent border border-accent text-gradient-to-l w-full px-6 py-2 hover:bg-gradient-to-l from-accent to-red-600 hover:text-white font-medium uppercase  rounded-full tra"
+              >
+                LogOut
+              </Link>
+              <label
+                htmlFor="dashboard-drawer"
+                className=" drawer-button md:hidden"
+              >
+                <FaOutdent className="w-4 h-4 mr-3" />
+              </label>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <TrActionBtn title="Log In" />
+              </Link>
+            </>
+          )}
+        </li>
       </ul>
     </div>
   );

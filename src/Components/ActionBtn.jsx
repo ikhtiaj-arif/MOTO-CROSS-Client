@@ -5,7 +5,7 @@ const ActionBtn = ({ title }) => {
   return (
     <motion.button 
     whileHover={{ scale: 1.1, transition: { duration: 0.5 } }}
-    className="bg-gradient-to-r from-accent to-red-800 px-6 py-3 hover:bg-gradient-to-l text-white  md:font-medium uppercase  rounded-full">
+    className="bg-gradient-to-r from-accent to-red-600 px-6 py-3 hover:bg-gradient-to-l text-white  md:font-medium uppercase  rounded-full">
       {title}
     </motion.button>
   );

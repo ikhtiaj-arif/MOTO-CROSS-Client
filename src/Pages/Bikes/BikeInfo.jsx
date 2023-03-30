@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
 import BookModal from "./BookModal";
 
 import ReportModal from "../../Components/ReportModal";
 
 const BikeInfo = () => {
-
-
   const bikeInfo = useLoaderData();
   const {
     Bike_Name,
@@ -21,10 +19,8 @@ const BikeInfo = () => {
     _id,
   } = bikeInfo;
 
-  
-
   return (
-    <div>
+    <div className="w-3/4 mx-auto h-screen mt-10">
       <div className="card lg:card-side bg-base-100 shadow-xl">
         <figure className="md:w-2/4">
           <img src={picture} alt="Album" />

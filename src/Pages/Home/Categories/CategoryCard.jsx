@@ -9,7 +9,7 @@ const CategoryCard = ({ category }) => {
   return (
     <motion.div
     whileInView={{
-      scale:[1, 0.9]
+      scale:[1, 0.99]
     }}
     whileHover={{ scale: 1, transition: { duration: 0.5 } }}
     className="mx-auto card w-96 h-96 bg-base-100 border shadow-xl">

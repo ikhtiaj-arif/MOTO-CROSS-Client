@@ -10,7 +10,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <div id="category" className="mx-auto mt-24">
+    <div id="category" className="lg:w-3/4 mx-auto mt-24">
       <div className="text-center">
         <h1 className="text-2xl  font-bold text-accent">Categories</h1>
         <h1 className="text-5xl py-3 font-bold">The Best Deal In Town</h1>
